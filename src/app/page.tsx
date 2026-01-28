@@ -38,6 +38,7 @@ const socialLinks = [
   { label: "LinkedIn", href: "https://linkedin.com/in/bancualex" },
   { label: "Instagram", href: "https://instagram.com/bancualex" },
   { label: "Substack", href: "https://alexbancu.substack.com" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function HubPage() {
@@ -309,6 +310,70 @@ export default function HubPage() {
           transform: translateX(3px);
         }
 
+        /* ── Latest post ── */
+        .hub-latest {
+          padding: 5rem 1.5rem 5rem;
+          max-width: 640px;
+          margin: 0 auto;
+          text-align: center;
+        }
+
+        .hub-latest-link {
+          display: block;
+          text-decoration: none;
+          color: inherit;
+          padding: 2rem 1.75rem;
+          background: var(--bg-card);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          text-align: left;
+          transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        .hub-latest-link:hover {
+          border-color: var(--border-hover);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 24px rgba(44, 69, 45, 0.06);
+        }
+
+        .hub-latest-date {
+          font-size: 0.78rem;
+          color: var(--text-muted);
+          margin-bottom: 0.5rem;
+        }
+
+        .hub-latest-title {
+          font-family: var(--font-display);
+          font-weight: 400;
+          font-size: 1.25rem;
+          line-height: 1.3;
+          color: var(--text-primary);
+          margin: 0 0 0.5rem;
+        }
+
+        .hub-latest-desc {
+          font-size: 0.88rem;
+          line-height: 1.6;
+          color: var(--text-secondary);
+          margin: 0;
+        }
+
+        .hub-latest-more {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          margin-top: 1.5rem;
+          font-size: 0.82rem;
+          font-weight: 600;
+          color: var(--accent);
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+
+        .hub-latest-more:hover {
+          color: var(--accent-light);
+        }
+
         /* ── Divider ── */
         .hub-divider {
           width: 40px;
@@ -455,20 +520,63 @@ export default function HubPage() {
       {/* Divider */}
       <div className="hub-divider" />
 
+      {/* Latest post */}
+      <section className="hub-latest">
+        <p className="hub-section-label">Latest from the blog</p>
+        <Link
+          href="/blog/feeling-stuck-in-life-and-career"
+          className="hub-latest-link"
+        >
+          <p className="hub-latest-date">January 2026</p>
+          <h2 className="hub-latest-title">
+            Feeling Stuck in Life and Career? Here&apos;s What&apos;s Actually Going On
+          </h2>
+          <p className="hub-latest-desc">
+            You&apos;re not lazy. Something real is happening underneath the
+            stuckness, and thinking harder won&apos;t fix it.
+          </p>
+        </Link>
+        <Link href="/blog" className="hub-latest-more">
+          All posts
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path
+              d="M1 7h12M8 2l5 5-5 5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </Link>
+      </section>
+
+      {/* Divider */}
+      <div className="hub-divider" />
+
       {/* Footer */}
       <footer className="hub-footer">
         <div className="hub-social">
-          {socialLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hub-social-link"
-            >
-              {link.label}
-            </a>
-          ))}
+          {socialLinks.map((link) => {
+            const isInternal = link.href.startsWith("/");
+            if (isInternal) {
+              return (
+                <Link key={link.label} href={link.href} className="hub-social-link">
+                  {link.label}
+                </Link>
+              );
+            }
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hub-social-link"
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
         <p className="hub-copy">
           &copy; {new Date().getFullYear()} Alex Bancu
