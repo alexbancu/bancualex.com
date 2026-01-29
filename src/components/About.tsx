@@ -13,7 +13,7 @@ export default function About() {
           <div className="relative shrink-0 group">
             <div className="absolute -inset-2 rounded-full border border-brand/10 transition-all duration-500 group-hover:scale-105 group-hover:border-brand/20" />
             <Image
-              src="/images/eu3.png"
+              src="/images/eu.jpg"
               alt="Alex Bancu, coach"
               width={280}
               height={280}

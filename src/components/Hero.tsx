@@ -6,7 +6,7 @@ export default function Hero() {
     <section className="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 py-20 md:py-28">
       <div className="max-w-3xl mx-auto">
         <Image
-          src="/images/eu2.jpeg"
+          src="/images/eu.jpg"
           alt="Alex Bancu"
           width={72}
           height={72}

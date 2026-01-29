@@ -440,7 +440,7 @@ export default async function HubPage() {
         {/* 1 — Identity (full width) */}
         <div className="b-card b-identity b-full">
           <Image
-            src="/images/eu2.jpeg"
+            src="/images/eu.jpg"
             alt="Alex Bancu"
             width={80}
             height={80}
