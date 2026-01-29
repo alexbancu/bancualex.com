@@ -31,7 +31,7 @@ export default function About() {
               Hi, I&apos;m Alex.
             </h2>
             <p className="text-muted text-base md:text-lg leading-relaxed max-w-sm">
-              Software engineer turned coach. Helping smart people get unstuck.
+              Software engineer turned coach. I work with overthinkers.
             </p>
           </div>
         </div>

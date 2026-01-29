@@ -5,7 +5,7 @@ import { getAllPosts } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Blog | Alex Bancu",
   description:
-    "Writing about overthinking, emotional clarity, and what it takes to get unstuck. For engineers, founders, and creatives.",
+    "Writing about overthinking, emotional clarity, and making decisions. For engineers, founders, and creatives.",
   alternates: { canonical: "/blog" },
   openGraph: { url: "/blog" },
 };
@@ -26,7 +26,7 @@ export default function BlogIndex() {
           On overthinking, emotional clarity, and getting unstuck.
         </p>
         <p className="text-base text-muted mb-12 leading-relaxed">
-          I spent years stuck in my own head. Overthinking career moves, second-guessing decisions, wondering why I had everything on paper but still felt off. I started writing to make sense of it. Turns out other people recognized themselves in it too.
+          I spent years stuck in my own head. Overthinking career moves, second-guessing decisions, wondering why I had everything on paper but still felt off. I started writing to make sense of it. Some of it landed with other people.
         </p>
 
         {posts.length === 0 ? (

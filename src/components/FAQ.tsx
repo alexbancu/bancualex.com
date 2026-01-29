@@ -2,12 +2,12 @@ const faqs = [
   {
     question: "What happens in a session?",
     answer:
-      "We talk. I ask questions that help you see what you're too close to notice. I don't give advice. Most of what holds people back is an emotion they've been avoiding. We find it, feel it, and things start moving.",
+      "We talk. I ask questions that help you see what you're too close to notice. I don't give advice. Most of what holds people back is an emotion they've been avoiding. We find it, feel it, and decisions get easier.",
   },
   {
     question: "Who is this for?",
     answer:
-      "Engineers, founders, creatives. People who are good at their work but stuck in patterns they can't think their way out of. If your head won't stop running and your energy is gone, this is probably for you.",
+      "People who are good at their work but stuck in patterns they can't think their way out of. Engineers, founders, creatives. If your thoughts won't stop looping and your energy is gone, this is probably for you.",
   },
   {
     question: "How is this different from therapy?",
@@ -15,9 +15,9 @@ const faqs = [
       "Therapy explores the past. Coaching focuses on where you are and where you want to go. We look at patterns, emotions, and decisions. If I think therapy would serve you better, I'll say so.",
   },
   {
-    question: "What if I'm not sure?",
+    question: "What if it doesn't work for me?",
     answer:
-      "Book the intro call. It's free. 30 minutes. Worst case, you get a useful conversation. I'll be honest about whether I can help.",
+      "We start with a free 30-minute call. No commitment. If it feels like we'd work well together, we go from there. If not, I'll tell you. I'd rather be honest than waste your time.",
   },
 ];
 
@@ -43,7 +43,7 @@ export default function FAQ() {
     <section className="py-16 md:py-24 px-6 bg-surface">
       <div className="max-w-2xl mx-auto">
         <h2 className="heading-tight text-2xl md:text-3xl text-foreground mb-10">
-          Frequently Asked Questions
+          Questions
         </h2>
 
         <div className="space-y-4">
@@ -52,7 +52,7 @@ export default function FAQ() {
               key={i}
               className="group border border-gray-200 rounded-xl overflow-hidden"
             >
-              <summary className="flex items-center justify-between gap-4 px-6 py-5 bg-white hover:bg-gray-50 transition-colors">
+              <summary className="flex items-center justify-between gap-4 px-6 py-5 bg-white hover:bg-gray-50 transition-colors cursor-pointer">
                 <span className="text-base md:text-lg font-semibold text-foreground">
                   {faq.question}
                 </span>

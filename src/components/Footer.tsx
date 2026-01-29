@@ -1,11 +1,3 @@
-function XIcon() {
-  return (
-    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
-
 function LinkedInIcon() {
   return (
     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -22,19 +14,27 @@ function InstagramIcon() {
   );
 }
 
-function LinkIcon() {
+function SubstackIcon() {
+  return (
+    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" />
+    </svg>
+  );
+}
+
+function BlogIcon() {
   return (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.439a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364L4.34 8.798" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
     </svg>
   );
 }
 
 const socialLinks = [
-  { icon: XIcon, href: "https://x.com/bancualex", label: "X (Twitter)" },
-  { icon: LinkedInIcon, href: "https://www.linkedin.com/in/bancucristianalexandru/", label: "LinkedIn" },
+{ icon: LinkedInIcon, href: "https://www.linkedin.com/in/bancucristianalexandru/", label: "LinkedIn" },
   { icon: InstagramIcon, href: "https://instagram.com/bancualex", label: "Instagram" },
-  { icon: LinkIcon, href: "https://bancualex.com", label: "Personal website" },
+  { icon: SubstackIcon, href: "https://alexbancu.substack.com", label: "Substack" },
+  { icon: BlogIcon, href: "/blog", label: "Blog", internal: true },
 ];
 
 export default function Footer() {
@@ -46,8 +46,7 @@ export default function Footer() {
             <a
               key={link.label}
               href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...(!("internal" in link) && { target: "_blank", rel: "noopener noreferrer" })}
               aria-label={link.label}
               className="text-muted hover:text-brand transition-colors duration-200"
             >

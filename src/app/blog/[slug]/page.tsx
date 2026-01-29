@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params }: Props) {
             Feeling stuck?
           </h2>
           <p className="text-muted mb-8 leading-relaxed">
-            If this post hit close to home, read about how I work with people like you.
+            If this resonated, read about how I work with people like you.
           </p>
           <Link
             href="/coaching"

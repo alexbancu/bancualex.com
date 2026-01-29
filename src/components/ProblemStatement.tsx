@@ -7,14 +7,22 @@ export default function ProblemStatement() {
           <span className="text-brand">That&apos;s what&apos;s draining you.</span>
         </h2>
 
-        <p className="text-base md:text-lg text-muted leading-relaxed">
-          You run mental loops all day. Pros and cons lists that go nowhere.
-          You beat yourself up for not doing more, then feel too tired to
-          start. You chase certainty on decisions that don&apos;t have a
-          right answer. None of this is a thinking problem. It&apos;s an
-          emotional one. The fog, the stuckness, the exhaustion. Those are
-          smoke signals. Something underneath needs your attention.
-        </p>
+        <div className="space-y-5 text-base md:text-lg text-muted leading-relaxed">
+          <p>
+            You run mental loops all day. Pros and cons lists that go nowhere.
+            You beat yourself up for not doing more, then feel too tired to start.
+          </p>
+
+          <p>
+            You chase certainty on decisions that don&apos;t have a right answer.
+            None of this is a thinking problem. It&apos;s an emotional one.
+          </p>
+
+          <p>
+            The fog, the stuckness, the exhaustion. Something underneath needs
+            your attention, and no amount of planning will get you there.
+          </p>
+        </div>
       </div>
     </section>
   );

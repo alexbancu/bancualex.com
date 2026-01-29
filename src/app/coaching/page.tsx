@@ -13,7 +13,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Mind Design Studio — Coaching for High Performers | Alex Bancu",
   description:
-    "Feeling stuck despite your success? Mind Design Studio offers 1-on-1 coaching for high-performers ready to unlock clarity, energy, and direction.",
+    "Coaching for people in tech who think too much and feel stuck. We find what's underneath. Decisions get easier.",
   alternates: {
     canonical: "/coaching",
   },
@@ -32,7 +32,6 @@ export default function CoachingPage() {
       <About />
       <Testimonials />
       <Process />
-      <CTASection />
       <FAQ />
       <CTASection />
       <Footer />

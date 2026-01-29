@@ -1,10 +1,9 @@
 const services = [
-  "Find the emotion underneath the overthinking",
-  "Stop using self-criticism as fuel (it burns out)",
-  "Make decisions from clarity, not from fear of getting it wrong",
-  "Notice the patterns you keep repeating and understand why",
-  "Welcome the feelings you've been managing instead of feeling",
-  "Get your energy back by dropping the internal war",
+  "The emotion underneath the overthinking. There's always one.",
+  "Why self-criticism feels productive but burns you out",
+  "Making decisions from clarity instead of from fear",
+  "The patterns you keep repeating, and what's actually driving them",
+  "Getting your energy back once you stop fighting yourself",
 ];
 
 function CheckIcon() {

@@ -10,9 +10,12 @@ export default function Symptoms() {
   return (
     <section className="py-16 md:py-24 px-6 bg-surface">
       <div className="max-w-2xl mx-auto">
-        <h2 className="heading-tight text-2xl md:text-3xl text-foreground mb-10">
-          These are smoke signals
+        <h2 className="heading-tight text-2xl md:text-3xl text-foreground mb-3">
+          Sound familiar?
         </h2>
+        <p className="text-muted text-base md:text-lg mb-10">
+          Most of my clients describe some version of these before we start working together.
+        </p>
 
         <ul className="space-y-5">
           {symptoms.map((symptom, i) => (

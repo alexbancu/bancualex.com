@@ -354,7 +354,7 @@ export default function HubPage() {
             <div className="b-venture-icon">✦</div>
             <h2 className="b-venture-title">Writing</h2>
             <p className="b-venture-desc">
-              On overthinking, emotional clarity, and getting unstuck.
+              Learning, emotions, parenting, performance. Some practical. Some just me figuring it out.
             </p>
           </div>
           <span className="b-venture-cta">
@@ -380,7 +380,7 @@ export default function HubPage() {
             <div className="b-venture-icon">◈</div>
             <h2 className="b-venture-title">Blog</h2>
             <p className="b-venture-desc">
-              Honest writing on overthinking, clarity, and change.
+              Longer pieces. Me figuring things out in public.
             </p>
           </div>
           <span className="b-venture-cta">
@@ -400,7 +400,7 @@ export default function HubPage() {
             <div className="b-venture-icon">◇</div>
             <h2 className="b-venture-title">Software</h2>
             <p className="b-venture-desc">
-              8+ years building things at the edge of tech and growth.
+              9+ years shipping React &amp; TypeScript at scale.
             </p>
           </div>
           <span className="b-venture-cta">

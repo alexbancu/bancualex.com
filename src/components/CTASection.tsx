@@ -5,14 +5,26 @@ export default function CTASection() {
     <section className="py-20 md:py-28 px-6 text-center">
       <div className="max-w-2xl mx-auto">
         <h2 className="heading-tight text-3xl md:text-4xl text-foreground mb-4">
-          You don&apos;t need more information. You need to feel what you&apos;ve been avoiding.
+          Let&apos;s talk about what&apos;s actually going on.
         </h2>
 
         <p className="font-sub text-lg md:text-xl text-muted mb-10">
-          30 minutes. Free. We talk about what&apos;s actually going on.
+          30 minutes. Free. No pitch. Just an honest conversation about where you are.
         </p>
 
-        <BookCallButton label="Book a free call" />
+        <BookCallButton label="Book a free intro call" />
+
+        <p className="mt-8 text-sm text-muted">
+          Not ready yet?{" "}
+          <a
+            href="https://alexbancu.substack.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-brand transition-colors"
+          >
+            I write about this stuff on Substack
+          </a>
+        </p>
       </div>
     </section>
   );
