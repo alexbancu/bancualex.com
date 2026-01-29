@@ -56,7 +56,7 @@ export default function Footer() {
         </div>
 
         <p className="text-sm text-muted">
-          &copy; {new Date().getFullYear()} Mind Design Studio &middot;{" "}
+          &copy; {new Date().getFullYear()} Alex Bancu &middot;{" "}
           <a href="/" className="hover:text-brand transition-colors duration-200">
             bancualex.com
           </a>
