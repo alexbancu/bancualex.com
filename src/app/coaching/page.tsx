@@ -13,7 +13,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Mind Design Studio — Coaching for High Performers | Alex Bancu",
   description:
-    "Feeling stuck despite your success? Mind Design Studio offers 1-on-1 coaching for high-performers ready to unlock clarity, energy, and direction — without the burnout.",
+    "Feeling stuck despite your success? Mind Design Studio offers 1-on-1 coaching for high-performers ready to unlock clarity, energy, and direction.",
   alternates: {
     canonical: "/coaching",
   },

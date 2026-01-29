@@ -26,10 +26,6 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Alex Bancu — Software Engineer, Dad, Writer",
-    description:
-      "Software engineer figuring things out in public. Writing about overthinking, decisions, and getting unstuck.",
-    url: "https://bancualex.com",
     siteName: "Alex Bancu",
     locale: "en_US",
     type: "website",
