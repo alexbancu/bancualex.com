@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Open_Sans, Montserrat } from "next/font/google";
 import "./globals.css";
 
@@ -18,17 +17,17 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Alex Bancu — Software Engineer, Coach & Writer",
+  title: "Alex Bancu — Software Engineer, Dad, Writer",
   description:
-    "The art and science of living well. Coaching, writing, and building for high-performers who want clarity, energy, and direction.",
+    "Software engineer figuring things out in public. Writing about overthinking, decisions, and getting unstuck.",
   metadataBase: new URL("https://bancualex.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Alex Bancu — Software Engineer, Coach & Writer",
+    title: "Alex Bancu — Software Engineer, Dad, Writer",
     description:
-      "The art and science of living well. Coaching, writing, and building for high-performers who want clarity, energy, and direction.",
+      "Software engineer figuring things out in public. Writing about overthinking, decisions, and getting unstuck.",
     url: "https://bancualex.com",
     siteName: "Alex Bancu",
     locale: "en_US",
@@ -36,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alex Bancu — Software Engineer, Coach & Writer",
+    title: "Alex Bancu — Software Engineer, Dad, Writer",
     description:
-      "The art and science of living well. Coaching, writing, and building for high-performers who want clarity, energy, and direction.",
+      "Software engineer figuring things out in public. Writing about overthinking, decisions, and getting unstuck.",
   },
   robots: {
     index: true,
@@ -54,10 +53,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script
+        <script
           src="https://analytics.ahrefs.com/analytics.js"
           data-key="LpkFzXV8AJVyU0yooxmwxA"
-          strategy="afterInteractive"
+          async
         />
       </head>
       <body className={`${openSans.variable} ${montserrat.variable} antialiased`}>
