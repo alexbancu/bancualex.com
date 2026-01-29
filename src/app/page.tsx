@@ -90,11 +90,14 @@ export default function HubPage() {
         .b-full { grid-column: 1 / -1; }
         .b-2col { grid-column: span 2; }
 
+        .b-mobile-hide { }
+
         @media (max-width: 639px) {
           .bento-grid { grid-template-columns: 1fr 1fr; }
           .b-2col { grid-column: 1 / -1; }
           .b-full { grid-column: 1 / -1; }
           .b-mobile-full { grid-column: 1 / -1; }
+          .b-mobile-hide { display: none; }
         }
 
         /* ── 1. Identity card (full width) ── */
@@ -337,7 +340,7 @@ export default function HubPage() {
         </Link>
 
         {/* 3 — Quote (1 col) */}
-        <div className="b-card b-quote">
+        <div className="b-card b-quote b-mobile-hide">
           <p className="b-quote-text">
             Clarity over<br />complexity.
           </p>
