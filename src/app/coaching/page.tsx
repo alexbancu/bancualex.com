@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/coaching",
   },
+  openGraph: {
+    url: "/coaching",
+  },
 };
 
 export default function CoachingPage() {

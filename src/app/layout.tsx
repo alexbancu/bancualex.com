@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
+    url: "/",
     siteName: "Alex Bancu",
     locale: "en_US",
     type: "website",

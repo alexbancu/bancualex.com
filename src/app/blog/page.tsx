@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "Writing about overthinking, emotional clarity, and what it takes to get unstuck. For engineers, founders, and creatives.",
   alternates: { canonical: "/blog" },
+  openGraph: { url: "/blog" },
 };
 
 export default function BlogIndex() {
@@ -21,8 +22,11 @@ export default function BlogIndex() {
         <h1 className="heading-tight text-3xl md:text-4xl text-foreground mb-4">
           Writing
         </h1>
-        <p className="text-lg text-muted mb-12 leading-relaxed">
+        <p className="text-lg text-muted mb-4 leading-relaxed">
           On overthinking, emotional clarity, and getting unstuck.
+        </p>
+        <p className="text-base text-muted mb-12 leading-relaxed">
+          I write about the things most people think about but rarely say out loud — feeling stuck despite success, making decisions when everything feels uncertain, and learning to trust yourself again. These posts come from my own experience as a software engineer, dad, and someone who overthinks everything.
         </p>
 
         {posts.length === 0 ? (
