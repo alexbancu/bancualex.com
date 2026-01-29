@@ -6,7 +6,7 @@ const ventures = [
     label: "Coaching",
     title: "Mind Design Studio",
     description:
-      "1-on-1 coaching for high-performers stuck in mental fog. Get clarity, energy, and direction without the burnout.",
+      "Coaching for people who think too much and feel stuck. No fluff.",
     href: "/coaching",
     cta: "Learn more",
     accent: "#1a5c2e",
@@ -443,7 +443,6 @@ export default function HubPage() {
           Software engineer. Dad. Figuring things out in public.
         </p>
 
-        <p className="hub-role">Engineer · Dad · Writer</p>
 
         <div className="hub-scroll-hint">
           <span>Explore</span>
