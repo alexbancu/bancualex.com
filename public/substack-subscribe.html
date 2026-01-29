@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><title>Subscribe</title></head>
+<body>
+<script>
+window.addEventListener("message", async function(e) {
+  if (!e.data || !e.data.email) return;
+  try {
+    await fetch("https://alexbancu.substack.com/api/v1/free", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "email=" + encodeURIComponent(e.data.email),
+    });
+  } catch (_) {
+    // CORS may block — fall through silently
+  }
+  window.parent.postMessage({ success: true }, "*");
+});
+</script>
+</body>
+</html>

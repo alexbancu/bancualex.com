@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getLatestSubstackPost } from "@/lib/substack";
+import SubstackSubscribe from "@/components/SubstackSubscribe";
 
-export default function HubPage() {
+export default async function HubPage() {
+  const substackPost = await getLatestSubstackPost();
   return (
     <div className="bento">
       <style>{`
@@ -84,20 +87,15 @@ export default function HubPage() {
         .b-card:nth-child(5) { animation-delay: 0.25s; }
         .b-card:nth-child(6) { animation-delay: 0.3s; }
         .b-card:nth-child(7) { animation-delay: 0.35s; }
-        .b-card:nth-child(8) { animation-delay: 0.4s; }
-
         /* ── Spans ── */
         .b-full { grid-column: 1 / -1; }
         .b-2col { grid-column: span 2; }
-
-        .b-mobile-hide { }
 
         @media (max-width: 639px) {
           .bento-grid { grid-template-columns: 1fr 1fr; }
           .b-2col { grid-column: 1 / -1; }
           .b-full { grid-column: 1 / -1; }
           .b-mobile-full { grid-column: 1 / -1; }
-          .b-mobile-hide { display: none; }
         }
 
         /* ── 1. Identity card (full width) ── */
@@ -201,51 +199,195 @@ export default function HubPage() {
           transform: translateX(3px);
         }
 
-        /* ── 3. Latest post card ── */
-        .b-post {
-          display: flex;
-          flex-direction: column;
+        /* ── Latest Substack post inside Writing card ── */
+        .b-substack-latest {
+          margin-top: 0.5rem;
+          padding-top: 0.5rem;
+          border-top: 1px solid var(--accent-border);
         }
 
-        .b-post-label {
-          font-size: 0.62rem;
+        .b-substack-label {
+          font-size: 0.6rem;
           font-weight: 600;
-          letter-spacing: 0.18em;
+          letter-spacing: 0.15em;
           text-transform: uppercase;
           color: var(--mute);
-          margin-bottom: 0.75rem;
+          margin: 0 0 0.35rem;
         }
 
-        .b-post-title {
+        .b-substack-title {
           font-family: var(--font-h);
           font-weight: 500;
-          font-size: 0.95rem;
+          font-size: 0.85rem;
           line-height: 1.35;
           color: var(--text);
-          margin: 0 0 0.3rem;
-        }
-
-        .b-post-excerpt {
-          font-size: 0.78rem;
-          line-height: 1.5;
-          color: var(--mute);
           margin: 0;
         }
 
-        /* ── 4. Social card ── */
-        .b-socials {
+        .b-substack-subtitle {
+          font-size: 0.75rem;
+          line-height: 1.45;
+          color: var(--mute);
+          margin: 0.2rem 0 0;
+        }
+
+        a.b-substack-latest {
+          text-decoration: none;
+          color: inherit;
+          display: block;
+          border-radius: 8px;
+          margin: 0.75rem -0.5rem 0;
+          padding: 0.5rem;
+          transition: background 0.2s;
+        }
+
+        a.b-substack-latest:hover {
+          background: var(--accent-soft);
+        }
+
+        a.b-substack-latest .b-substack-title {
+          transition: color 0.2s;
+        }
+
+        a.b-substack-latest:hover .b-substack-title {
+          color: var(--accent);
+        }
+
+        /* ── Writing card (non-link) ── */
+        .b-writing {
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          min-height: 160px;
+        }
+
+        .b-substack-link {
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: var(--accent);
+          text-decoration: none;
+          display: inline-flex;
           align-items: center;
-          gap: 0.9rem;
+          gap: 0.35rem;
+          margin-top: 0.6rem;
+          transition: opacity 0.2s;
+        }
+
+        .b-substack-link:hover {
+          opacity: 0.7;
+        }
+
+        .b-substack-subscribe {
+          margin-top: auto;
+          padding-top: 0.75rem;
+        }
+
+        /* Override Tailwind styles from SubstackSubscribe inside hub */
+        .b-substack-subscribe form {
+          display: flex;
+          gap: 0.4rem;
+          align-items: center;
+          max-width: none;
+          margin: 0;
+        }
+
+        .b-substack-subscribe input[type="email"] {
+          all: unset;
+          box-sizing: border-box;
+          flex: 1;
+          height: 34px;
+          padding: 0 0.75rem;
+          border-radius: 8px;
+          border: 1px solid var(--accent-border);
+          background: var(--bg);
+          color: var(--text);
+          font-family: var(--font-b);
+          font-size: 0.75rem;
+          transition: border-color 0.2s;
+        }
+
+        .b-substack-subscribe input[type="email"]::placeholder {
+          color: var(--mute);
+        }
+
+        .b-substack-subscribe input[type="email"]:focus {
+          border-color: var(--accent);
+        }
+
+        .b-substack-subscribe button[type="submit"] {
+          all: unset;
+          box-sizing: border-box;
+          height: 34px;
+          padding: 0 1rem;
+          border-radius: 8px;
+          background: var(--accent);
+          color: #f0f5f1;
+          font-family: var(--font-b);
+          font-size: 0.72rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background 0.2s;
+          white-space: nowrap;
+          text-align: center;
+        }
+
+        .b-substack-subscribe button[type="submit"]:hover {
+          background: #24763b;
+        }
+
+        .b-substack-subscribe button[type="submit"]:disabled,
+        .b-substack-subscribe input[type="email"]:disabled {
+          opacity: 0.5;
+        }
+
+        /* Success / error states */
+        .b-substack-subscribe > div,
+        .b-substack-subscribe > p {
+          font-size: 0.75rem;
+          font-family: var(--font-b);
+          text-align: left;
+        }
+
+        /* ── 3. Coaching accent card ── */
+        .b-coaching {
+          background: var(--accent);
+          border-color: var(--accent);
+          color: #f0f5f1;
+        }
+
+        .b-coaching .b-venture-icon {
+          background: rgba(255, 255, 255, 0.15);
+          color: #f0f5f1;
+        }
+
+        .b-coaching .b-venture-desc {
+          color: rgba(240, 245, 241, 0.7);
+        }
+
+        .b-coaching .b-venture-cta {
+          color: #f0f5f1;
+        }
+
+        a.b-card.b-coaching:hover {
+          border-color: #24763b;
+          box-shadow: 0 6px 24px rgba(26, 92, 46, 0.2);
+        }
+
+        /* ── Footer ── */
+        .b-footer {
+          text-align: center;
+          padding: 2rem 0 1rem;
+          max-width: 720px;
+          margin: 0 auto;
+          opacity: 0;
+          animation: brise 0.6s ease-out 0.5s forwards;
         }
 
         .b-socials-row {
           display: flex;
           gap: 1.25rem;
-          flex-wrap: wrap;
           justify-content: center;
+          flex-wrap: wrap;
+          margin-bottom: 1rem;
         }
 
         .b-social {
@@ -260,35 +402,10 @@ export default function HubPage() {
           color: var(--accent);
         }
 
-        /* ── 5. Quote / tagline card ── */
-        .b-quote {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          background: var(--accent);
-          border-color: var(--accent);
-          color: #f0f5f1;
-        }
-
-        .b-quote-text {
-          font-family: var(--font-h);
-          font-weight: 400;
-          font-style: italic;
-          font-size: 0.95rem;
-          line-height: 1.55;
-          margin: 0;
-          opacity: 0.92;
-        }
-
-        /* ── Footer ── */
-        .b-footer {
-          text-align: center;
-          padding: 2rem 0 1rem;
+        .b-copyright {
           font-size: 0.68rem;
           color: var(--mute);
-          opacity: 0;
-          animation: brise 0.6s ease-out 0.5s forwards;
+          margin: 0;
         }
 
         /* ── Animations ── */
@@ -324,75 +441,43 @@ export default function HubPage() {
           </div>
         </div>
 
-        {/* 2 — Coaching (2 col) */}
-        <Link href="/coaching" className="b-card b-venture b-2col">
-          <div>
-            <div className="b-venture-icon">◆</div>
-            <h2 className="b-venture-title">Coaching</h2>
-            <p className="b-venture-desc">
-              Clear the mental noise. Make decisions that actually stick.
-            </p>
-          </div>
-          <span className="b-venture-cta">
-            Learn more
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </span>
-        </Link>
-
-        {/* 3 — Quote (1 col) */}
-        <div className="b-card b-quote b-mobile-hide">
-          <p className="b-quote-text">
-            Clarity over<br />complexity.
-          </p>
-        </div>
-
-        {/* 4 — Writing (1 col) */}
-        <a
-          href="https://alexbancu.substack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="b-card b-venture b-mobile-full"
-        >
+        {/* 2 — Writing / Substack (2 col) */}
+        <div className="b-card b-writing b-2col">
           <div>
             <div className="b-venture-icon">✦</div>
             <h2 className="b-venture-title">Writing</h2>
             <p className="b-venture-desc">
               Learning, emotions, parenting, performance. Some practical. Some just me figuring it out.
             </p>
+            <a
+              href="https://alexbancu.substack.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="b-substack-link"
+            >
+              Read on Substack
+            </a>
           </div>
-          <span className="b-venture-cta">
-            Read on Substack
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </span>
-        </a>
-
-        {/* 5 — Latest post (2 col) */}
-        <Link href="/blog/what-causes-indecisiveness" className="b-card b-post b-2col">
-          <p className="b-post-label">Latest post</p>
-          <h2 className="b-post-title">
-            What Causes Indecisiveness (And Why Thinking Harder Won&apos;t Fix It)
-          </h2>
-          <p className="b-post-excerpt">
-            You&apos;re not bad at decisions. You&apos;re avoiding the discomfort that comes with making one.
-          </p>
-        </Link>
-
-        {/* 6 — Blog (1 col) */}
-        <Link href="/blog" className="b-card b-venture b-mobile-full">
-          <div>
-            <div className="b-venture-icon">◈</div>
-            <h2 className="b-venture-title">Blog</h2>
-            <p className="b-venture-desc">
-              Longer pieces. Me figuring things out in public.
-            </p>
+          {substackPost && (
+            <a
+              href={substackPost.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="b-substack-latest"
+            >
+              <p className="b-substack-label">Latest</p>
+              <p className="b-substack-title">{substackPost.title}</p>
+              {substackPost.subtitle && (
+                <p className="b-substack-subtitle">{substackPost.subtitle}</p>
+              )}
+            </a>
+          )}
+          <div className="b-substack-subscribe">
+            <SubstackSubscribe />
           </div>
-          <span className="b-venture-cta">
-            All posts
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </span>
-        </Link>
+        </div>
 
-        {/* 7 — Software (1 col) */}
+        {/* 3 — Software (1 col) */}
         <a
           href="https://www.linkedin.com/in/bancucristianalexandru/"
           target="_blank"
@@ -403,7 +488,10 @@ export default function HubPage() {
             <div className="b-venture-icon">◇</div>
             <h2 className="b-venture-title">Software</h2>
             <p className="b-venture-desc">
-              9+ years shipping React &amp; TypeScript at scale.
+              9+ years shipping React &amp; TypeScript at scale. Independent contractor. Remote since 2020.
+            </p>
+            <p className="b-venture-desc" style={{ opacity: 0.5, fontSize: '0.75rem', marginTop: '0.5rem' }}>
+              React · TypeScript · Next.js · Node.js · Datadog
             </p>
           </div>
           <span className="b-venture-cta">
@@ -412,19 +500,46 @@ export default function HubPage() {
           </span>
         </a>
 
-        {/* 8 — Socials (1 col) */}
-        <div className="b-card b-socials b-mobile-full">
-          <div className="b-socials-row">
-            <a href="https://x.com/AlxBancu" target="_blank" rel="noopener noreferrer" className="b-social">X</a>
-            <a href="https://www.linkedin.com/in/bancucristianalexandru/" target="_blank" rel="noopener noreferrer" className="b-social">LinkedIn</a>
-            <a href="https://instagram.com/bancualex" target="_blank" rel="noopener noreferrer" className="b-social">Instagram</a>
-            <a href="https://alexbancu.substack.com" target="_blank" rel="noopener noreferrer" className="b-social">Substack</a>
+        {/* 4 — Coaching (1 col, accent) */}
+        <Link href="/coaching" className="b-card b-venture b-coaching b-mobile-full">
+          <div>
+            <div className="b-venture-icon">◆</div>
+            <h2 className="b-venture-title">Coaching</h2>
+            <p className="b-venture-desc">
+              Clear the mental noise. Decisions get easier.
+            </p>
           </div>
-        </div>
+          <span className="b-venture-cta">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </span>
+        </Link>
+
+        {/* 6 — Blog (2 col) */}
+        <Link href="/blog" className="b-card b-venture b-2col">
+          <div>
+            <div className="b-venture-icon">◈</div>
+            <h2 className="b-venture-title">Blog</h2>
+            <p className="b-venture-desc">
+              Research-backed writing on why smart people feel stuck, burn out, and overthink.
+            </p>
+          </div>
+          <span className="b-venture-cta">
+            All posts
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </span>
+        </Link>
+
       </div>
 
       <div className="b-footer">
-        &copy; {new Date().getFullYear()} Alex Bancu
+        <div className="b-socials-row">
+          <a href="https://x.com/AlxBancu" target="_blank" rel="noopener noreferrer" className="b-social">X</a>
+          <a href="https://www.linkedin.com/in/bancucristianalexandru/" target="_blank" rel="noopener noreferrer" className="b-social">LinkedIn</a>
+          <a href="https://instagram.com/bancualex" target="_blank" rel="noopener noreferrer" className="b-social">Instagram</a>
+          <a href="https://alexbancu.substack.com" target="_blank" rel="noopener noreferrer" className="b-social">Substack</a>
+        </div>
+        <p className="b-copyright">&copy; {new Date().getFullYear()} Alex Bancu</p>
       </div>
     </div>
   );

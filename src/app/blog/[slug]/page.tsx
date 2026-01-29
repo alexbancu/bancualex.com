@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getPostBySlug, getAllSlugs } from "@/lib/blog";
+import SubstackSubscribe from "@/components/SubstackSubscribe";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -59,8 +60,16 @@ export default async function BlogPostPage({ params }: Props) {
           <MDXRemote source={post.content} />
         </div>
 
-        {/* CTA */}
-        <div className="mt-16 pt-10 border-t border-gray-100 text-center">
+        {/* Newsletter — soft CTA */}
+        <div className="mt-12 pt-6 border-t border-gray-100 text-center">
+          <p className="text-sm text-muted mb-3">
+            I write a few times per month about clarity, decisions, and getting unstuck.
+          </p>
+          <SubstackSubscribe />
+        </div>
+
+        {/* Coaching — primary CTA */}
+        <div className="mt-16 pt-12 border-t border-gray-100 text-center">
           <h2 className="heading-tight text-2xl md:text-3xl text-foreground mb-3">
             Feeling stuck?
           </h2>
