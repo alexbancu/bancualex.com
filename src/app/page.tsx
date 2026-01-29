@@ -6,7 +6,7 @@ const ventures = [
     label: "Coaching",
     title: "Mind Design Studio",
     description:
-      "Coaching for people who think too much and feel stuck. No fluff.",
+      "Coaching for people who think too much and feel stuck.",
     href: "/coaching",
     cta: "Learn more",
     accent: "#1a5c2e",
