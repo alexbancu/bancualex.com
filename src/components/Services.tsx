@@ -1,10 +1,12 @@
 const services = [
-  "The emotion underneath the overthinking. There's always one.",
-  "Why self-criticism feels productive but burns you out",
-  "Making decisions from clarity instead of from fear",
-  "The patterns you keep repeating, and what's actually driving them",
-  "Getting your energy back once you stop fighting yourself",
+  "Find the emotion underneath the overthinking. Let it move",
+  "Replace self-criticism with a voice that actually helps you",
+  "Make decisions from clarity, not from fear",
+  "See the patterns you keep repeating. Choose differently",
+  "Get your energy back when you stop fighting yourself",
 ];
+
+import BookCallButton from "./BookCallButton";
 
 function CheckIcon() {
   return (
@@ -40,6 +42,10 @@ export default function Services() {
               </span>
             </div>
           ))}
+        </div>
+
+        <div className="mt-10 text-center">
+          <BookCallButton label="Start with a free call" />
         </div>
       </div>
     </section>

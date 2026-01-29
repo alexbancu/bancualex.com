@@ -11,7 +11,7 @@ import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Mind Design Studio — Coaching for High Performers | Alex Bancu",
+  title: "Coaching for High Performers | Alex Bancu",
   description:
     "Coaching for people in tech who think too much and feel stuck. We find what's underneath. Decisions get easier.",
   alternates: {

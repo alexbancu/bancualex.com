@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getLatestSubstackPost } from "@/lib/substack";
 import SubstackSubscribe from "@/components/SubstackSubscribe";
+import CountUp from "@/components/CountUp";
 
 export default async function HubPage() {
   const substackPost = await getLatestSubstackPost();
@@ -92,7 +93,7 @@ export default async function HubPage() {
         .b-2col { grid-column: span 2; }
 
         @media (max-width: 639px) {
-          .bento-grid { grid-template-columns: 1fr 1fr; }
+          .bento-grid { grid-template-columns: 1fr; }
           .b-2col { grid-column: 1 / -1; }
           .b-full { grid-column: 1 / -1; }
           .b-mobile-full { grid-column: 1 / -1; }
@@ -279,6 +280,7 @@ export default async function HubPage() {
         .b-substack-subscribe {
           margin-top: auto;
           padding-top: 0.75rem;
+          border-top: 1px solid var(--accent-border);
         }
 
         /* Override Tailwind styles from SubstackSubscribe inside hub */
@@ -402,10 +404,22 @@ export default async function HubPage() {
           color: var(--accent);
         }
 
+        .b-social svg {
+          display: block;
+          width: 18px;
+          height: 18px;
+        }
+
         .b-copyright {
           font-size: 0.68rem;
           color: var(--mute);
           margin: 0;
+        }
+
+        /* ── Coaching hover glow ── */
+        a.b-card.b-coaching:hover {
+          border-color: #24763b;
+          box-shadow: 0 6px 32px rgba(26, 92, 46, 0.25), 0 0 0 1px rgba(26, 92, 46, 0.15);
         }
 
         /* ── Animations ── */
@@ -426,7 +440,7 @@ export default async function HubPage() {
         {/* 1 — Identity (full width) */}
         <div className="b-card b-identity b-full">
           <Image
-            src="/images/alex-profile.jpg"
+            src="/images/eu2.jpeg"
             alt="Alex Bancu"
             width={80}
             height={80}
@@ -444,7 +458,7 @@ export default async function HubPage() {
         {/* 2 — Writing / Substack (2 col) */}
         <div className="b-card b-writing b-2col">
           <div>
-            <div className="b-venture-icon">✦</div>
+            <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></div>
             <h2 className="b-venture-title">Writing</h2>
             <p className="b-venture-desc">
               Learning, emotions, parenting, performance. Some practical. Some just me figuring it out.
@@ -456,6 +470,7 @@ export default async function HubPage() {
               className="b-substack-link"
             >
               Read on Substack
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </a>
           </div>
           {substackPost && (
@@ -485,12 +500,12 @@ export default async function HubPage() {
           className="b-card b-venture b-mobile-full"
         >
           <div>
-            <div className="b-venture-icon">◇</div>
+            <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
             <h2 className="b-venture-title">Software</h2>
             <p className="b-venture-desc">
-              9+ years shipping React &amp; TypeScript at scale. Independent contractor. Remote since 2020.
+              <CountUp end={9} suffix="+" /> years shipping React &amp; TypeScript at scale. Independent contractor. Remote since 2020.
             </p>
-            <p className="b-venture-desc" style={{ opacity: 0.5, fontSize: '0.75rem', marginTop: '0.5rem' }}>
+            <p className="b-venture-desc" style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
               React · TypeScript · Next.js · Node.js · Datadog
             </p>
           </div>
@@ -503,7 +518,7 @@ export default async function HubPage() {
         {/* 4 — Coaching (1 col, accent) */}
         <Link href="/coaching" className="b-card b-venture b-coaching b-mobile-full">
           <div>
-            <div className="b-venture-icon">◆</div>
+            <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
             <h2 className="b-venture-title">Coaching</h2>
             <p className="b-venture-desc">
               Clear the mental noise. Decisions get easier.
@@ -518,7 +533,7 @@ export default async function HubPage() {
         {/* 6 — Blog (2 col) */}
         <Link href="/blog" className="b-card b-venture b-2col">
           <div>
-            <div className="b-venture-icon">◈</div>
+            <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
             <h2 className="b-venture-title">Blog</h2>
             <p className="b-venture-desc">
               Research-backed writing on why smart people feel stuck, burn out, and overthink.
@@ -534,10 +549,10 @@ export default async function HubPage() {
 
       <div className="b-footer">
         <div className="b-socials-row">
-          <a href="https://x.com/AlxBancu" target="_blank" rel="noopener noreferrer" className="b-social">X</a>
-          <a href="https://www.linkedin.com/in/bancucristianalexandru/" target="_blank" rel="noopener noreferrer" className="b-social">LinkedIn</a>
-          <a href="https://instagram.com/bancualex" target="_blank" rel="noopener noreferrer" className="b-social">Instagram</a>
-          <a href="https://alexbancu.substack.com" target="_blank" rel="noopener noreferrer" className="b-social">Substack</a>
+          <a href="https://x.com/AlxBancu" target="_blank" rel="noopener noreferrer" className="b-social" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/in/bancucristianalexandru/" target="_blank" rel="noopener noreferrer" className="b-social" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://instagram.com/bancualex" target="_blank" rel="noopener noreferrer" className="b-social" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://alexbancu.substack.com" target="_blank" rel="noopener noreferrer" className="b-social" aria-label="Substack"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
         </div>
         <p className="b-copyright">&copy; {new Date().getFullYear()} Alex Bancu</p>
       </div>

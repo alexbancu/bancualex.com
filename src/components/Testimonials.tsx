@@ -26,7 +26,7 @@ export default function Testimonials() {
     <section className="py-16 md:py-24 px-6">
       <div className="max-w-4xl mx-auto">
         <h2 className="heading-tight text-2xl md:text-3xl text-foreground mb-10 text-center">
-          What My Clients Say
+          People I&apos;ve worked with
         </h2>
 
         <Script
@@ -45,7 +45,7 @@ export default function Testimonials() {
         <iframe
           id="wall-of-love-DabD0td"
           src="https://senja.io/p/alex-bancu/DabD0td?hideNavigation=true&embed=true"
-          title="Wall of Love — Client testimonials for Mind Design Studio"
+          title="Wall of Love - Client testimonials for Alex Bancu"
           frameBorder="0"
           scrolling="no"
           width="100%"

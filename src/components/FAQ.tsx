@@ -5,6 +5,16 @@ const faqs = [
       "We talk. I ask questions that help you see what you're too close to notice. I don't give advice. Most of what holds people back is an emotion they've been avoiding. We find it, feel it, and decisions get easier.",
   },
   {
+    question: "How long is a session?",
+    answer:
+      "Sessions are 60 minutes. That gives us enough space to go deep without dragging. Some sessions run a few minutes over if we're in the middle of something important.",
+  },
+  {
+    question: "How many sessions do I need?",
+    answer:
+      "There's no fixed package. Some people work with me for a few sessions, some for months. We check in regularly and you decide what makes sense. No contracts, no pressure.",
+  },
+  {
     question: "Who is this for?",
     answer:
       "People who are good at their work but stuck in patterns they can't think their way out of. Engineers, founders, creatives. If your thoughts won't stop looping and your energy is gone, this is probably for you.",
@@ -12,7 +22,7 @@ const faqs = [
   {
     question: "How is this different from therapy?",
     answer:
-      "Therapy explores the past. Coaching focuses on where you are and where you want to go. We look at patterns, emotions, and decisions. If I think therapy would serve you better, I'll say so.",
+      "They're complementary, not competing. Therapy often explores the past in depth. Coaching focuses on where you are now and where you want to go. We work on patterns, emotions, and decisions. If I think therapy would serve you better, I'll say so.",
   },
   {
     question: "What if it doesn't work for me?",

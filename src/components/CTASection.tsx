@@ -1,4 +1,5 @@
 import BookCallButton from "./BookCallButton";
+import SubstackSubscribe from "./SubstackSubscribe";
 
 export default function CTASection() {
   return (
@@ -14,17 +15,15 @@ export default function CTASection() {
 
         <BookCallButton label="Book a free intro call" />
 
-        <p className="mt-8 text-sm text-muted">
-          Not ready yet?{" "}
-          <a
-            href="https://alexbancu.substack.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-brand transition-colors"
-          >
-            I write about this stuff on Substack
-          </a>
-        </p>
+        <div className="mt-14 pt-10 border-t border-gray-200 max-w-sm mx-auto">
+          <p className="text-sm text-muted mb-1">
+            Want to think on it?
+          </p>
+          <p className="text-sm text-muted mb-4">
+            My Substack is where I break down the patterns behind stuckness.
+          </p>
+          <SubstackSubscribe />
+        </div>
       </div>
     </section>
   );

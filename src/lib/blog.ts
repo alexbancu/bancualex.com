@@ -49,6 +49,14 @@ export function getPostBySlug(slug: string): BlogPost | null {
   };
 }
 
+export function getNextPost(currentSlug: string): Omit<BlogPost, "content"> | null {
+  const posts = getAllPosts();
+  const index = posts.findIndex((p) => p.slug === currentSlug);
+  if (index === -1) return null;
+  // Next post = the one published before this one, or wrap to newest
+  return posts[index + 1] ?? posts[0] ?? null;
+}
+
 export function getAllSlugs(): string[] {
   if (!fs.existsSync(CONTENT_DIR)) return [];
   return fs
