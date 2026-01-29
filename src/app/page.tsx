@@ -15,7 +15,7 @@ const ventures = [
     label: "Writing",
     title: "Bancu Writes",
     description:
-      "A weekly newsletter on energy, decision-making, and ending overthinking. Real solutions from lived experience.",
+      "Writing about overthinking, emotional clarity, and what it actually takes to get unstuck.",
     href: "https://alexbancu.substack.com",
     cta: "Read on Substack",
     accent: "#2a7a3e",
