@@ -1,579 +1,428 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const ventures = [
-  {
-    label: "Coaching",
-    title: "Mind Design Studio",
-    description:
-      "Coaching for people who think too much and feel stuck.",
-    href: "/coaching",
-    cta: "Learn more",
-    accent: "#1a5c2e",
-  },
-  {
-    label: "Writing",
-    title: "Bancu Writes",
-    description:
-      "Writing about overthinking, emotional clarity, and what it actually takes to get unstuck.",
-    href: "https://alexbancu.substack.com",
-    cta: "Read on Substack",
-    accent: "#2a7a3e",
-    external: true,
-  },
-  {
-    label: "Building",
-    title: "Software & Side Projects",
-    description:
-      "8+ years as a software engineer. Building tools and experiments where tech meets personal growth.",
-    href: "#",
-    cta: "Coming soon",
-    accent: "#8a9a8c",
-    disabled: true,
-  },
-];
-
-const socialLinks = [
-  { label: "X / Twitter", href: "https://x.com/AlxBancu" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/bancualex" },
-  { label: "Instagram", href: "https://instagram.com/bancualex" },
-  { label: "Substack", href: "https://alexbancu.substack.com" },
-  { label: "Blog", href: "/blog" },
-];
-
 export default function HubPage() {
   return (
-    <div className="hub">
+    <div className="bento">
       <style>{`
-        .hub {
+        .bento {
           --bg: #eef0ee;
-          --bg-hero: #e4e8e4;
-          --bg-card: #f8faf8;
-          --text-primary: #1e2e20;
-          --text-secondary: #4d5e4f;
-          --text-muted: #8a9a8c;
+          --card: #f8faf8;
+          --card-alt: #f2f5f2;
+          --text: #1e2e20;
+          --sub: #4d5e4f;
+          --mute: #8a9a8c;
           --accent: #1a5c2e;
-          --accent-light: #2a7a3e;
-          --cta: #1a5c2e;
-          --cta-hover: #154a25;
-          --border: rgba(26, 92, 46, 0.1);
-          --border-hover: rgba(26, 92, 46, 0.25);
-          --font-display: var(--font-lora), Georgia, serif;
-          --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+          --accent-soft: rgba(26, 92, 46, 0.07);
+          --accent-border: rgba(26, 92, 46, 0.10);
+          --accent-hover: rgba(26, 92, 46, 0.18);
+          --radius: 16px;
+          --font-h: var(--font-lora), Georgia, serif;
+          --font-b: var(--font-inter), -apple-system, sans-serif;
 
-          min-height: 100vh;
+          min-height: 100dvh;
           background: var(--bg);
-          color: var(--text-primary);
-          font-family: var(--font-body);
-          overflow-x: hidden;
+          color: var(--text);
+          font-family: var(--font-b);
           -webkit-font-smoothing: antialiased;
+          padding: 1rem;
         }
 
-        /* Subtle paper grain */
-        .hub::before {
+        @media (min-width: 640px) {
+          .bento { padding: 1.5rem; }
+        }
+
+        /* Grain */
+        .bento::before {
           content: '';
           position: fixed;
           inset: 0;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.018'/%3E%3C/svg%3E");
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
           pointer-events: none;
-          z-index: 1;
+          z-index: 0;
         }
 
-        .hub > * {
-          position: relative;
-          z-index: 2;
-        }
+        .bento > * { position: relative; z-index: 1; }
 
-        /* ── Hero ── */
-        .hub-hero {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          padding: 4rem 1.5rem;
-          background:
-            radial-gradient(ellipse 60% 40% at 50% 45%, rgba(52, 120, 140, 0.04) 0%, transparent 70%),
-            var(--bg-hero);
-        }
-
-        .hub-avatar {
-          width: 108px;
-          height: 108px;
-          border-radius: 50%;
-          object-fit: cover;
-          border: 3px solid rgba(52, 120, 140, 0.15);
-          box-shadow: 0 4px 24px rgba(52, 120, 140, 0.08);
-          margin-bottom: 2.2rem;
-          opacity: 0;
-          animation: hubFadeUp 0.8s ease-out 0.1s forwards;
-        }
-
-        .hub-name {
-          font-family: var(--font-display);
-          font-weight: 500;
-          font-size: clamp(2.4rem, 6vw, 4.2rem);
-          line-height: 1.05;
-          letter-spacing: -0.03em;
-          color: var(--accent);
-          margin: 0 0 1.2rem;
-          opacity: 0;
-          animation: hubFadeUp 0.8s ease-out 0.25s forwards;
-        }
-
-        .hub-tagline {
-          font-family: var(--font-body);
-          font-size: clamp(0.95rem, 1.8vw, 1.12rem);
-          font-weight: 400;
-          line-height: 1.75;
-          color: var(--text-secondary);
-          max-width: 460px;
-          margin: 0 0 1.2rem;
-          opacity: 0;
-          animation: hubFadeUp 0.8s ease-out 0.4s forwards;
-        }
-
-        .hub-role {
-          font-size: 0.78rem;
-          font-weight: 500;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: var(--accent-light);
-          margin: 0;
-          opacity: 0;
-          animation: hubFadeUp 0.8s ease-out 0.55s forwards;
-        }
-
-        .hub-scroll-hint {
-          position: absolute;
-          bottom: 2.5rem;
-          left: 0;
-          right: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 0.5rem;
-          opacity: 0;
-          animation: hubFadeUp 0.8s ease-out 1s forwards;
-        }
-
-        .hub-scroll-hint span {
-          font-size: 0.7rem;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          color: var(--text-muted);
-        }
-
-        .hub-scroll-line {
-          width: 1px;
-          height: 28px;
-          background: linear-gradient(to bottom, var(--accent-light), transparent);
-          animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-          0%, 100% { opacity: 0.25; transform: scaleY(0.7); }
-          50% { opacity: 0.65; transform: scaleY(1); }
-        }
-
-        /* ── Ventures ── */
-        .hub-ventures {
-          padding: 5rem 1.5rem 6rem;
-          max-width: 960px;
+        .bento-grid {
+          max-width: 720px;
           margin: 0 auto;
-        }
-
-        .hub-section-label {
-          font-size: 0.72rem;
-          font-weight: 500;
-          letter-spacing: 0.25em;
-          text-transform: uppercase;
-          color: var(--accent-light);
-          text-align: center;
-          margin-bottom: 1rem;
-        }
-
-        .hub-section-heading {
-          font-family: var(--font-display);
-          font-weight: 500;
-          font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-          line-height: 1.2;
-          letter-spacing: -0.02em;
-          color: var(--text-primary);
-          text-align: center;
-          margin: 0 0 3.5rem;
-        }
-
-        .hub-cards {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.25rem;
+          grid-auto-rows: auto;
+          gap: 0.75rem;
         }
 
-        @media (max-width: 768px) {
-          .hub-cards {
-            grid-template-columns: 1fr;
-            gap: 1rem;
+        @media (min-width: 640px) {
+          .bento-grid { gap: 1rem; }
+        }
+
+        /* ── Shared card base ── */
+        .b-card {
+          background: var(--card);
+          border: 1px solid var(--accent-border);
+          border-radius: var(--radius);
+          padding: 1.5rem;
+          text-decoration: none;
+          color: inherit;
+          transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+          opacity: 0;
+          animation: brise 0.6s ease-out forwards;
+        }
+
+        a.b-card:hover, .b-card-link:hover {
+          border-color: var(--accent-hover);
+          box-shadow: 0 6px 24px rgba(26, 92, 46, 0.06);
+          transform: translateY(-2px);
+        }
+
+        /* Stagger */
+        .b-card:nth-child(1) { animation-delay: 0.05s; }
+        .b-card:nth-child(2) { animation-delay: 0.1s; }
+        .b-card:nth-child(3) { animation-delay: 0.15s; }
+        .b-card:nth-child(4) { animation-delay: 0.2s; }
+        .b-card:nth-child(5) { animation-delay: 0.25s; }
+        .b-card:nth-child(6) { animation-delay: 0.3s; }
+        .b-card:nth-child(7) { animation-delay: 0.35s; }
+        .b-card:nth-child(8) { animation-delay: 0.4s; }
+
+        /* ── Spans ── */
+        .b-full { grid-column: 1 / -1; }
+        .b-2col { grid-column: span 2; }
+
+        @media (max-width: 639px) {
+          .bento-grid { grid-template-columns: 1fr 1fr; }
+          .b-2col { grid-column: 1 / -1; }
+          .b-full { grid-column: 1 / -1; }
+          .b-mobile-full { grid-column: 1 / -1; }
+        }
+
+        /* ── 1. Identity card (full width) ── */
+        .b-identity {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+          padding: 1.75rem 2rem;
+        }
+
+        @media (max-width: 639px) {
+          .b-identity {
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem 1.5rem;
           }
         }
 
-        .hub-card {
-          background: var(--bg-card);
-          border: 1px solid var(--border);
-          border-radius: 14px;
-          padding: 2rem 1.75rem;
+        .b-avatar {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2px solid var(--accent-border);
+          box-shadow: 0 0 0 3px var(--card), 0 2px 12px rgba(26, 92, 46, 0.06);
+          flex-shrink: 0;
+        }
+
+        .b-id-text { flex: 1; }
+
+        .b-name {
+          font-family: var(--font-h);
+          font-weight: 500;
+          font-size: 1.65rem;
+          line-height: 1.15;
+          letter-spacing: -0.025em;
+          margin: 0 0 0.35rem;
+        }
+
+        .b-bio {
+          font-size: 0.88rem;
+          line-height: 1.55;
+          color: var(--sub);
+          margin: 0;
+        }
+
+        /* ── 2. Venture cards ── */
+        .b-venture {
           display: flex;
           flex-direction: column;
-          gap: 0;
-          transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-          text-decoration: none;
-          color: inherit;
+          justify-content: space-between;
+          min-height: 160px;
           position: relative;
           overflow: hidden;
         }
 
-        .hub-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 2px;
-          background: var(--card-accent);
-          opacity: 0;
-          transition: opacity 0.3s;
+        .b-venture-icon {
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: var(--accent-soft);
+          border-radius: 8px;
+          font-size: 0.8rem;
+          color: var(--accent);
+          margin-bottom: 1rem;
         }
 
-        .hub-card:not(.hub-card--disabled):hover {
-          border-color: var(--border-hover);
-          transform: translateY(-3px);
-          box-shadow: 0 8px 32px rgba(52, 120, 140, 0.08);
-        }
-
-        .hub-card:not(.hub-card--disabled):hover::before {
-          opacity: 1;
-        }
-
-        .hub-card--disabled {
-          opacity: 0.45;
-          cursor: default;
-        }
-
-        .hub-card-label {
-          font-size: 0.7rem;
-          font-weight: 600;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: var(--card-accent);
-          margin-bottom: 0.9rem;
-        }
-
-        .hub-card-title {
-          font-family: var(--font-display);
-          font-weight: 400;
-          font-size: 1.35rem;
-          line-height: 1.2;
+        .b-venture-title {
+          font-family: var(--font-h);
+          font-weight: 500;
+          font-size: 1.1rem;
+          line-height: 1.25;
           letter-spacing: -0.01em;
-          color: var(--text-primary);
-          margin: 0 0 0.75rem;
+          margin: 0 0 0.4rem;
         }
 
-        .hub-card-desc {
-          font-size: 0.88rem;
-          line-height: 1.65;
-          color: var(--text-secondary);
-          margin: 0 0 1.5rem;
+        .b-venture-desc {
+          font-size: 0.78rem;
+          line-height: 1.5;
+          color: var(--mute);
+          margin: 0 0 1rem;
           flex: 1;
         }
 
-        .hub-card-cta {
-          font-size: 0.82rem;
+        .b-venture-cta {
+          font-size: 0.75rem;
           font-weight: 600;
-          color: var(--card-accent);
-          letter-spacing: 0.02em;
+          color: var(--accent);
           display: inline-flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.35rem;
         }
 
-        .hub-card-cta svg {
+        .b-venture-cta svg {
           transition: transform 0.2s;
         }
 
-        .hub-card:not(.hub-card--disabled):hover .hub-card-cta svg {
+        a.b-card:hover .b-venture-cta svg {
           transform: translateX(3px);
         }
 
-        /* ── Latest post ── */
-        .hub-latest {
-          padding: 5rem 1.5rem 5rem;
-          max-width: 640px;
-          margin: 0 auto;
-          text-align: center;
+        /* ── 3. Latest post card ── */
+        .b-post {
+          display: flex;
+          flex-direction: column;
         }
 
-        .hub-latest-link {
-          display: block;
-          text-decoration: none;
-          color: inherit;
-          padding: 2rem 1.75rem;
-          background: var(--bg-card);
-          border: 1px solid var(--border);
-          border-radius: 14px;
-          text-align: left;
-          transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        .b-post-label {
+          font-size: 0.62rem;
+          font-weight: 600;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--mute);
+          margin-bottom: 0.75rem;
         }
 
-        .hub-latest-link:hover {
-          border-color: var(--border-hover);
-          transform: translateY(-2px);
-          box-shadow: 0 6px 24px rgba(52, 120, 140, 0.06);
-        }
-
-        .hub-latest-date {
-          font-size: 0.78rem;
-          color: var(--text-muted);
-          margin-bottom: 0.5rem;
-        }
-
-        .hub-latest-title {
-          font-family: var(--font-display);
+        .b-post-title {
+          font-family: var(--font-h);
           font-weight: 500;
-          font-size: 1.25rem;
-          line-height: 1.3;
-          color: var(--text-primary);
-          margin: 0 0 0.5rem;
+          font-size: 0.95rem;
+          line-height: 1.35;
+          color: var(--text);
+          margin: 0 0 0.3rem;
         }
 
-        .hub-latest-desc {
-          font-size: 0.88rem;
-          line-height: 1.6;
-          color: var(--text-secondary);
+        .b-post-excerpt {
+          font-size: 0.78rem;
+          line-height: 1.5;
+          color: var(--mute);
           margin: 0;
         }
 
-        .hub-latest-more {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          margin-top: 1.5rem;
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: var(--accent);
-          text-decoration: none;
-          transition: color 0.2s;
-        }
-
-        .hub-latest-more:hover {
-          color: var(--accent-light);
-        }
-
-        /* ── Divider ── */
-        .hub-divider {
-          width: 40px;
-          height: 1px;
-          background: var(--accent);
-          opacity: 0.18;
-          margin: 0 auto;
-        }
-
-        /* ── Footer ── */
-        .hub-footer {
-          padding: 4rem 1.5rem 3rem;
-          text-align: center;
-          border-top: 1px solid var(--border);
-        }
-
-        .hub-social {
+        /* ── 4. Social card ── */
+        .b-socials {
           display: flex;
+          flex-direction: column;
           justify-content: center;
-          gap: 2rem;
-          margin-bottom: 2rem;
-          flex-wrap: wrap;
+          align-items: center;
+          gap: 0.9rem;
         }
 
-        .hub-social-link {
-          font-size: 0.85rem;
-          color: var(--text-muted);
+        .b-socials-row {
+          display: flex;
+          gap: 1.25rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .b-social {
+          font-size: 0.78rem;
+          color: var(--mute);
           text-decoration: none;
           transition: color 0.2s;
           letter-spacing: 0.01em;
         }
 
-        .hub-social-link:hover {
+        .b-social:hover {
           color: var(--accent);
         }
 
-        .hub-copy {
-          font-size: 0.75rem;
-          color: var(--text-muted);
+        /* ── 5. Quote / tagline card ── */
+        .b-quote {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          background: var(--accent);
+          border-color: var(--accent);
+          color: #f0f5f1;
+        }
+
+        .b-quote-text {
+          font-family: var(--font-h);
+          font-weight: 400;
+          font-style: italic;
+          font-size: 0.95rem;
+          line-height: 1.55;
           margin: 0;
+          opacity: 0.92;
+        }
+
+        /* ── Footer ── */
+        .b-footer {
+          text-align: center;
+          padding: 2rem 0 1rem;
+          font-size: 0.68rem;
+          color: var(--mute);
+          opacity: 0;
+          animation: brise 0.6s ease-out 0.5s forwards;
         }
 
         /* ── Animations ── */
-        @keyframes hubFadeUp {
-          from { opacity: 0; transform: translateY(18px); }
+        @keyframes brise {
+          from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .hub-avatar, .hub-name, .hub-tagline, .hub-role, .hub-scroll-hint {
-            opacity: 1;
-            animation: none;
+          .b-card, .b-footer {
+            opacity: 1 !important;
+            animation: none !important;
           }
-          .hub-scroll-line { animation: none; opacity: 0.5; }
         }
       `}</style>
 
-      {/* Hero */}
-      <section className="hub-hero">
-        <Image
-          src="/images/alex-profile.jpg"
-          alt="Alex Bancu"
-          width={100}
-          height={100}
-          className="hub-avatar"
-          priority
-        />
-
-        <h1 className="hub-name">Alex Bancu</h1>
-
-        <p className="hub-tagline">
-          Software engineer. Dad. Figuring things out in public.
-        </p>
-
-
-        <div className="hub-scroll-hint">
-          <span>Explore</span>
-          <div className="hub-scroll-line" />
+      <div className="bento-grid">
+        {/* 1 — Identity (full width) */}
+        <div className="b-card b-identity b-full">
+          <Image
+            src="/images/alex-profile.jpg"
+            alt="Alex Bancu"
+            width={80}
+            height={80}
+            className="b-avatar"
+            priority
+          />
+          <div className="b-id-text">
+            <h1 className="b-name">Alex Bancu</h1>
+            <p className="b-bio">
+              Software engineer. Dad. Figuring things out in public.
+            </p>
+          </div>
         </div>
-      </section>
 
-      {/* Ventures */}
-      <section className="hub-ventures">
-        <h2 className="hub-section-heading">
-          Things I&apos;m working on
-        </h2>
+        {/* 2 — Coaching (2 col) */}
+        <Link href="/coaching" className="b-card b-venture b-2col">
+          <div>
+            <div className="b-venture-icon">◆</div>
+            <h2 className="b-venture-title">Coaching</h2>
+            <p className="b-venture-desc">
+              Clear the mental noise. Make decisions that actually stick.
+            </p>
+          </div>
+          <span className="b-venture-cta">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </span>
+        </Link>
 
-        <div className="hub-cards">
-          {ventures.map((v) => {
-            if (v.disabled) {
-              return (
-                <div
-                  key={v.title}
-                  className="hub-card hub-card--disabled"
-                  style={{ "--card-accent": v.accent } as React.CSSProperties}
-                >
-                  <span className="hub-card-label">{v.label}</span>
-                  <h3 className="hub-card-title">{v.title}</h3>
-                  <p className="hub-card-desc">{v.description}</p>
-                  <span className="hub-card-cta">{v.cta}</span>
-                </div>
-              );
-            }
-
-            const isExternal = v.external;
-            const Tag = isExternal ? "a" : Link;
-            const linkProps = isExternal
-              ? { href: v.href, target: "_blank", rel: "noopener noreferrer" }
-              : { href: v.href };
-
-            return (
-              <Tag
-                key={v.title}
-                {...linkProps}
-                className={`hub-card ${v.disabled ? "hub-card--disabled" : ""}`}
-                style={{ "--card-accent": v.accent } as React.CSSProperties}
-              >
-                <span className="hub-card-label">{v.label}</span>
-                <h3 className="hub-card-title">{v.title}</h3>
-                <p className="hub-card-desc">{v.description}</p>
-                <span className="hub-card-cta">
-                  {v.cta}
-                  {!v.disabled && (
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <path
-                        d="M1 7h12M8 2l5 5-5 5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  )}
-                </span>
-              </Tag>
-            );
-          })}
+        {/* 3 — Quote (1 col) */}
+        <div className="b-card b-quote">
+          <p className="b-quote-text">
+            Clarity over<br />complexity.
+          </p>
         </div>
-      </section>
 
-      {/* Divider */}
-      <div className="hub-divider" />
-
-      {/* Latest post */}
-      <section className="hub-latest">
-        <p className="hub-section-label">Latest from the blog</p>
-        <Link
-          href="/blog/feeling-stuck-in-life-and-career"
-          className="hub-latest-link"
+        {/* 4 — Writing (1 col) */}
+        <a
+          href="https://alexbancu.substack.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="b-card b-venture b-mobile-full"
         >
-          <p className="hub-latest-date">January 2026</p>
-          <h2 className="hub-latest-title">
+          <div>
+            <div className="b-venture-icon">✦</div>
+            <h2 className="b-venture-title">Writing</h2>
+            <p className="b-venture-desc">
+              On overthinking, emotional clarity, and getting unstuck.
+            </p>
+          </div>
+          <span className="b-venture-cta">
+            Read on Substack
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </span>
+        </a>
+
+        {/* 5 — Latest post (2 col) */}
+        <Link href="/blog/feeling-stuck-in-life-and-career" className="b-card b-post b-2col">
+          <p className="b-post-label">Latest post</p>
+          <h2 className="b-post-title">
             Feeling Stuck in Life and Career? Here&apos;s What&apos;s Actually Going On
           </h2>
-          <p className="hub-latest-desc">
-            You&apos;re not lazy. Something real is happening underneath the
-            stuckness, and thinking harder won&apos;t fix it.
+          <p className="b-post-excerpt">
+            You&apos;re not lazy. Something real is happening underneath.
           </p>
         </Link>
-        <Link href="/blog" className="hub-latest-more">
-          All posts
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path
-              d="M1 7h12M8 2l5 5-5 5"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+
+        {/* 6 — Blog (1 col) */}
+        <Link href="/blog" className="b-card b-venture b-mobile-full">
+          <div>
+            <div className="b-venture-icon">◈</div>
+            <h2 className="b-venture-title">Blog</h2>
+            <p className="b-venture-desc">
+              Honest writing on overthinking, clarity, and change.
+            </p>
+          </div>
+          <span className="b-venture-cta">
+            All posts
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </span>
         </Link>
-      </section>
 
-      {/* Divider */}
-      <div className="hub-divider" />
+        {/* 7 — Software (1 col) */}
+        <a
+          href="https://linkedin.com/in/bancualex"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="b-card b-venture b-mobile-full"
+        >
+          <div>
+            <div className="b-venture-icon">◇</div>
+            <h2 className="b-venture-title">Software</h2>
+            <p className="b-venture-desc">
+              8+ years building things at the edge of tech and growth.
+            </p>
+          </div>
+          <span className="b-venture-cta">
+            LinkedIn
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </span>
+        </a>
 
-      {/* Footer */}
-      <footer className="hub-footer">
-        <div className="hub-social">
-          {socialLinks.map((link) => {
-            const isInternal = link.href.startsWith("/");
-            if (isInternal) {
-              return (
-                <Link key={link.label} href={link.href} className="hub-social-link">
-                  {link.label}
-                </Link>
-              );
-            }
-            return (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hub-social-link"
-              >
-                {link.label}
-              </a>
-            );
-          })}
+        {/* 8 — Socials (1 col) */}
+        <div className="b-card b-socials b-mobile-full">
+          <div className="b-socials-row">
+            <a href="https://x.com/AlxBancu" target="_blank" rel="noopener noreferrer" className="b-social">X</a>
+            <a href="https://linkedin.com/in/bancualex" target="_blank" rel="noopener noreferrer" className="b-social">LinkedIn</a>
+            <a href="https://instagram.com/bancualex" target="_blank" rel="noopener noreferrer" className="b-social">Instagram</a>
+            <a href="https://alexbancu.substack.com" target="_blank" rel="noopener noreferrer" className="b-social">Substack</a>
+          </div>
         </div>
-        <p className="hub-copy">
-          &copy; {new Date().getFullYear()} Alex Bancu
-        </p>
-      </footer>
+      </div>
+
+      <div className="b-footer">
+        &copy; {new Date().getFullYear()} Alex Bancu
+      </div>
     </div>
   );
 }
