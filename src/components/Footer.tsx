@@ -32,7 +32,7 @@ function LinkIcon() {
 
 const socialLinks = [
   { icon: XIcon, href: "https://x.com/bancualex", label: "X (Twitter)" },
-  { icon: LinkedInIcon, href: "https://linkedin.com/in/bancualex", label: "LinkedIn" },
+  { icon: LinkedInIcon, href: "https://www.linkedin.com/in/bancucristianalexandru/", label: "LinkedIn" },
   { icon: InstagramIcon, href: "https://instagram.com/bancualex", label: "Instagram" },
   { icon: LinkIcon, href: "https://bancualex.com", label: "Personal website" },
 ];
@@ -57,7 +57,10 @@ export default function Footer() {
         </div>
 
         <p className="text-sm text-muted">
-          &copy; {new Date().getFullYear()} Mind Design Studio
+          &copy; {new Date().getFullYear()} Mind Design Studio &middot;{" "}
+          <a href="/" className="hover:text-brand transition-colors duration-200">
+            bancualex.com
+          </a>
         </p>
       </div>
     </footer>

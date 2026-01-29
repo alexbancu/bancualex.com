@@ -391,7 +391,7 @@ export default function HubPage() {
 
         {/* 7 — Software (1 col) */}
         <a
-          href="https://linkedin.com/in/bancualex"
+          href="https://www.linkedin.com/in/bancucristianalexandru/"
           target="_blank"
           rel="noopener noreferrer"
           className="b-card b-venture b-mobile-full"
@@ -413,7 +413,7 @@ export default function HubPage() {
         <div className="b-card b-socials b-mobile-full">
           <div className="b-socials-row">
             <a href="https://x.com/AlxBancu" target="_blank" rel="noopener noreferrer" className="b-social">X</a>
-            <a href="https://linkedin.com/in/bancualex" target="_blank" rel="noopener noreferrer" className="b-social">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/bancucristianalexandru/" target="_blank" rel="noopener noreferrer" className="b-social">LinkedIn</a>
             <a href="https://instagram.com/bancualex" target="_blank" rel="noopener noreferrer" className="b-social">Instagram</a>
             <a href="https://alexbancu.substack.com" target="_blank" rel="noopener noreferrer" className="b-social">Substack</a>
           </div>

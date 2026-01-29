@@ -26,7 +26,7 @@ export default function BlogIndex() {
           On overthinking, emotional clarity, and getting unstuck.
         </p>
         <p className="text-base text-muted mb-12 leading-relaxed">
-          I write about the things most people think about but rarely say out loud — feeling stuck despite success, making decisions when everything feels uncertain, and learning to trust yourself again. These posts come from my own experience as a software engineer, dad, and someone who overthinks everything.
+          I spent years stuck in my own head. Overthinking career moves, second-guessing decisions, wondering why I had everything on paper but still felt off. I started writing to make sense of it. Turns out other people recognized themselves in it too.
         </p>
 
         {posts.length === 0 ? (
