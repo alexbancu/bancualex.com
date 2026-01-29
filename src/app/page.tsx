@@ -445,11 +445,10 @@ export default function HubPage() {
         <h1 className="hub-name">Alex Bancu</h1>
 
         <p className="hub-tagline">
-          Software engineer, mindset coach, and writer. Figuring out what it
-          actually takes to live well.
+          Software engineer. Dad. Figuring things out in public.
         </p>
 
-        <p className="hub-role">Engineer · Coach · Writer</p>
+        <p className="hub-role">Engineer · Dad · Writer</p>
 
         <div className="hub-scroll-hint">
           <span>Explore</span>
@@ -459,9 +458,8 @@ export default function HubPage() {
 
       {/* Ventures */}
       <section className="hub-ventures">
-        <p className="hub-section-label">What I do</p>
         <h2 className="hub-section-heading">
-          What I spend my time on
+          Things I&apos;m working on
         </h2>
 
         <div className="hub-cards">
