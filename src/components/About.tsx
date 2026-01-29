@@ -18,6 +18,7 @@ export default function About() {
               width={280}
               height={280}
               className="relative rounded-full object-cover w-40 h-40 md:w-48 md:h-48 shadow-[0_8px_40px_rgba(26,92,46,0.08)] transition-transform duration-500 group-hover:scale-[1.02]"
+              style={{ objectPosition: "center 20%" }}
               priority
             />
           </div>
