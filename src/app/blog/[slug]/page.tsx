@@ -29,7 +29,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <main className="min-h-screen bg-white px-6 py-20 md:py-28">
+    <main className="min-h-screen bg-background px-6 py-20 md:py-28">
       <article className="max-w-2xl mx-auto">
         <Link
           href="/blog"
@@ -68,7 +68,7 @@ export default async function BlogPostPage({ params }: Props) {
           </p>
           <Link
             href="/coaching"
-            className="inline-flex items-center justify-center bg-brand hover:bg-brand-hover text-white font-semibold rounded-btn w-44 h-12 text-sm transition-colors"
+            className="inline-flex items-center justify-center bg-cta hover:bg-cta-hover text-white font-semibold rounded-[0.875rem] w-44 h-12 text-sm transition-colors"
           >
             Learn about coaching
           </Link>

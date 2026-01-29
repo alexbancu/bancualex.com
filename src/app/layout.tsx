@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Open_Sans, Montserrat } from "next/font/google";
+import { Inter, Lora } from "next/font/google";
 import "./globals.css";
 
-const openSans = Open_Sans({
-  variable: "--font-open-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const lora = Lora({
+  variable: "--font-lora",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -59,7 +60,7 @@ export default function RootLayout({
           async
         />
       </head>
-      <body className={`${openSans.variable} ${montserrat.variable} antialiased`}>
+      <body className={`${inter.variable} ${lora.variable} antialiased`}>
         {children}
       </body>
     </html>

@@ -13,7 +13,7 @@ export default function BlogIndex() {
   const posts = getAllPosts();
 
   return (
-    <main className="min-h-screen bg-white px-6 py-20 md:py-28">
+    <main className="min-h-screen bg-background px-6 py-20 md:py-28">
       <div className="max-w-2xl mx-auto">
         <p className="font-sub text-sm font-medium tracking-[0.2em] uppercase text-brand mb-4">
           Blog

@@ -9,7 +9,7 @@ const ventures = [
       "1-on-1 coaching for high-performers stuck in mental fog. Get clarity, energy, and direction without the burnout.",
     href: "/coaching",
     cta: "Learn more",
-    accent: "#2c6e31",
+    accent: "#1a5c2e",
   },
   {
     label: "Writing",
@@ -18,7 +18,7 @@ const ventures = [
       "A weekly newsletter on energy, decision-making, and ending overthinking. Real solutions from lived experience.",
     href: "https://alexbancu.substack.com",
     cta: "Read on Substack",
-    accent: "#2c452d",
+    accent: "#2a7a3e",
     external: true,
   },
   {
@@ -28,7 +28,7 @@ const ventures = [
       "8+ years as a software engineer. Building tools and experiments where tech meets personal growth.",
     href: "#",
     cta: "Coming soon",
-    accent: "#6b7e70",
+    accent: "#8a9a8c",
     disabled: true,
   },
 ];
@@ -45,26 +45,21 @@ export default function HubPage() {
   return (
     <div className="hub">
       <style>{`
-        @font-face {
-          font-family: 'CameraPlain';
-          src: url('https://cdn.gpteng.co/mcp-widgets/v1/fonts/CameraPlainVariable.woff2') format('woff2');
-          font-weight: 100 900;
-          font-display: swap;
-        }
-
         .hub {
-          --bg: #f8f6f1;
-          --bg-hero: #f0ede5;
-          --bg-card: #ffffff;
+          --bg: #eef0ee;
+          --bg-hero: #e4e8e4;
+          --bg-card: #f8faf8;
           --text-primary: #1e2e20;
           --text-secondary: #4d5e4f;
           --text-muted: #8a9a8c;
-          --accent: #2c452d;
-          --accent-light: #3a5a3c;
-          --border: rgba(44, 69, 45, 0.1);
-          --border-hover: rgba(44, 69, 45, 0.22);
-          --font-display: 'CameraPlain', Georgia, 'Times New Roman', serif;
-          --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+          --accent: #1a5c2e;
+          --accent-light: #2a7a3e;
+          --cta: #1a5c2e;
+          --cta-hover: #154a25;
+          --border: rgba(26, 92, 46, 0.1);
+          --border-hover: rgba(26, 92, 46, 0.25);
+          --font-display: var(--font-lora), Georgia, serif;
+          --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
 
           min-height: 100vh;
           background: var(--bg);
@@ -99,7 +94,7 @@ export default function HubPage() {
           text-align: center;
           padding: 4rem 1.5rem;
           background:
-            radial-gradient(ellipse 60% 40% at 50% 45%, rgba(44, 69, 45, 0.04) 0%, transparent 70%),
+            radial-gradient(ellipse 60% 40% at 50% 45%, rgba(52, 120, 140, 0.04) 0%, transparent 70%),
             var(--bg-hero);
         }
 
@@ -108,8 +103,8 @@ export default function HubPage() {
           height: 108px;
           border-radius: 50%;
           object-fit: cover;
-          border: 3px solid rgba(44, 69, 45, 0.15);
-          box-shadow: 0 4px 24px rgba(44, 69, 45, 0.08);
+          border: 3px solid rgba(52, 120, 140, 0.15);
+          box-shadow: 0 4px 24px rgba(52, 120, 140, 0.08);
           margin-bottom: 2.2rem;
           opacity: 0;
           animation: hubFadeUp 0.8s ease-out 0.1s forwards;
@@ -117,7 +112,7 @@ export default function HubPage() {
 
         .hub-name {
           font-family: var(--font-display);
-          font-weight: 300;
+          font-weight: 500;
           font-size: clamp(2.4rem, 6vw, 4.2rem);
           line-height: 1.05;
           letter-spacing: -0.03em;
@@ -201,7 +196,7 @@ export default function HubPage() {
 
         .hub-section-heading {
           font-family: var(--font-display);
-          font-weight: 300;
+          font-weight: 500;
           font-size: clamp(1.6rem, 3.5vw, 2.4rem);
           line-height: 1.2;
           letter-spacing: -0.02em;
@@ -253,7 +248,7 @@ export default function HubPage() {
         .hub-card:not(.hub-card--disabled):hover {
           border-color: var(--border-hover);
           transform: translateY(-3px);
-          box-shadow: 0 8px 32px rgba(44, 69, 45, 0.08);
+          box-shadow: 0 8px 32px rgba(52, 120, 140, 0.08);
         }
 
         .hub-card:not(.hub-card--disabled):hover::before {
@@ -333,7 +328,7 @@ export default function HubPage() {
         .hub-latest-link:hover {
           border-color: var(--border-hover);
           transform: translateY(-2px);
-          box-shadow: 0 6px 24px rgba(44, 69, 45, 0.06);
+          box-shadow: 0 6px 24px rgba(52, 120, 140, 0.06);
         }
 
         .hub-latest-date {
@@ -344,7 +339,7 @@ export default function HubPage() {
 
         .hub-latest-title {
           font-family: var(--font-display);
-          font-weight: 400;
+          font-weight: 500;
           font-size: 1.25rem;
           line-height: 1.3;
           color: var(--text-primary);
