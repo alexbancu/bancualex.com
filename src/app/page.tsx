@@ -364,13 +364,13 @@ export default function HubPage() {
         </a>
 
         {/* 5 — Latest post (2 col) */}
-        <Link href="/blog/feeling-stuck-in-life-and-career" className="b-card b-post b-2col">
+        <Link href="/blog/what-causes-indecisiveness" className="b-card b-post b-2col">
           <p className="b-post-label">Latest post</p>
           <h2 className="b-post-title">
-            Feeling Stuck in Life and Career? Here&apos;s What&apos;s Actually Going On
+            What Causes Indecisiveness (And Why Thinking Harder Won&apos;t Fix It)
           </h2>
           <p className="b-post-excerpt">
-            You&apos;re not lazy. Something real is happening underneath.
+            You&apos;re not bad at decisions. You&apos;re avoiding the discomfort that comes with making one.
           </p>
         </Link>
 
