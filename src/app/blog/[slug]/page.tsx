@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getPostBySlug, getAllSlugs } from "@/lib/blog";
-import BookCallButton from "@/components/BookCallButton";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -65,9 +64,14 @@ export default async function BlogPostPage({ params }: Props) {
             Feeling stuck?
           </h2>
           <p className="text-muted mb-8 leading-relaxed">
-            If this post hit close to home, let&apos;s talk. 30 minutes. Free. No pitch.
+            If this post hit close to home, read about how I work with people like you.
           </p>
-          <BookCallButton label="Book a free call" />
+          <Link
+            href="/coaching"
+            className="inline-flex items-center justify-center bg-brand hover:bg-brand-hover text-white font-semibold rounded-btn w-44 h-12 text-sm transition-colors"
+          >
+            Learn about coaching
+          </Link>
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-100">
