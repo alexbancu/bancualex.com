@@ -18,7 +18,7 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Alex Bancu — Software Engineer, Dad, Writer",
+  title: "Alex Bancu — Software Engineer & Coach",
   description:
     "Software engineer figuring things out in public. Writing about overthinking, decisions, and getting unstuck.",
   metadataBase: new URL("https://bancualex.com"),
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alex Bancu — Software Engineer, Dad, Writer",
+    title: "Alex Bancu — Software Engineer & Coach",
     description:
       "Software engineer figuring things out in public. Writing about overthinking, decisions, and getting unstuck.",
   },
