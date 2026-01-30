@@ -47,7 +47,7 @@ export default function SubstackSubscribe() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="flex gap-2 justify-center items-center max-w-sm mx-auto"
+        className="AhrefsAnalytics-event-SubstackSubscribe flex gap-2 justify-center items-center max-w-sm mx-auto"
       >
         <input
           type="email"
