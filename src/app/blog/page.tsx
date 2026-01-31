@@ -7,7 +7,13 @@ export const metadata: Metadata = {
   description:
     "Writing about overthinking, emotional clarity, and making decisions. For engineers, founders, and creatives.",
   alternates: { canonical: "/blog" },
-  openGraph: { url: "/blog" },
+  openGraph: {
+    url: "/blog",
+    title: "Blog | Alex Bancu",
+    description:
+      "Writing about overthinking, emotional clarity, and making decisions. For engineers, founders, and creatives.",
+    type: "website",
+  },
 };
 
 export default function BlogIndex() {

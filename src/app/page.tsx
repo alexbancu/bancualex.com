@@ -6,7 +6,29 @@ import CountUp from "@/components/CountUp";
 
 export default async function HubPage() {
   const substackPost = await getLatestSubstackPost();
+
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Alex Bancu",
+    url: "https://bancualex.com",
+    jobTitle: "Software Engineer & Coach",
+    description:
+      "Software engineer figuring things out in public. Writing about overthinking, decisions, and getting unstuck.",
+    sameAs: [
+      "https://x.com/AlxBancu",
+      "https://www.linkedin.com/in/bancucristianalexandru/",
+      "https://instagram.com/bancualex",
+      "https://alexbancu.substack.com",
+    ],
+  };
+
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+    />
     <div className="bento">
       <style>{`
         .bento {
@@ -557,5 +579,6 @@ export default async function HubPage() {
         <p className="b-copyright">&copy; {new Date().getFullYear()} Alex Bancu</p>
       </div>
     </div>
+    </>
   );
 }

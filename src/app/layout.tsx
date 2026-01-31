@@ -27,6 +27,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     url: "/",
+    title: "Alex Bancu — Software Engineer & Coach",
+    description:
+      "Software engineer figuring things out in public. Writing about overthinking, decisions, and getting unstuck.",
     siteName: "Alex Bancu",
     locale: "en_US",
     type: "website",

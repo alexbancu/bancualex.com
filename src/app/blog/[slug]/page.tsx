@@ -25,7 +25,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${post.title} | Alex Bancu`,
     description: post.description,
     alternates: { canonical: `/blog/${slug}` },
-    openGraph: { url: `/blog/${slug}` },
+    openGraph: {
+      url: `/blog/${slug}`,
+      title: `${post.title} | Alex Bancu`,
+      description: post.description,
+      type: "article",
+      publishedTime: new Date(post.date).toISOString(),
+      authors: ["Alex Bancu"],
+    },
   };
 }
 
@@ -38,8 +45,35 @@ export default async function BlogPostPage({ params }: Props) {
 
   const nextPost = getNextPost(slug);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.date).toISOString(),
+    author: {
+      "@type": "Person",
+      name: "Alex Bancu",
+      url: "https://bancualex.com",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Alex Bancu",
+      url: "https://bancualex.com",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://bancualex.com/blog/${slug}`,
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <ReadingProgress />
       <StickyPostHeader title={post.title} />
       <main className="min-h-screen bg-background px-6 py-20 md:py-28">
