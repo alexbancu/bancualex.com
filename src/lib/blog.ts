@@ -9,7 +9,13 @@ export interface BlogPost {
   title: string;
   description: string;
   date: string;
+  readingTime: number;
   content: string;
+}
+
+function estimateReadingTime(text: string): number {
+  const words = text.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 230));
 }
 
 export function getAllPosts(): Omit<BlogPost, "content">[] {
@@ -19,12 +25,13 @@ export function getAllPosts(): Omit<BlogPost, "content">[] {
 
   const posts = files.map((file) => {
     const raw = fs.readFileSync(path.join(CONTENT_DIR, file), "utf-8");
-    const { data } = matter(raw);
+    const { data, content } = matter(raw);
     return {
       slug: file.replace(/\.mdx$/, ""),
       title: data.title ?? "",
       description: data.description ?? "",
       date: data.date ?? "",
+      readingTime: estimateReadingTime(content),
     };
   });
 
@@ -45,6 +52,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     title: data.title ?? "",
     description: data.description ?? "",
     date: data.date ?? "",
+    readingTime: estimateReadingTime(content),
     content,
   };
 }
