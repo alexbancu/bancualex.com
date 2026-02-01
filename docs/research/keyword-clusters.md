@@ -8,7 +8,7 @@ Source: Ahrefs Free Keyword Generator
 
 Site copy: "Without the burnout. Without the overwhelm."
 
-### "burnout vs laziness" (4 keywords)
+### "burnout vs laziness" (4 keywords) — ✅ [Published](/blog/burnout-vs-laziness)
 
 | Keyword | KD | Volume |
 |---|---|---|
@@ -16,7 +16,7 @@ Site copy: "Without the burnout. Without the overwhelm."
 | signs of burnout vs laziness | N/A | <100 |
 | burnout vs laziness quiz | N/A | <100 |
 
-### "burnout recovery" (289 keywords)
+### "burnout recovery" (289 keywords) — ✅ [Published](/blog/burnout-recovery-stages)
 
 | Keyword | KD | Volume |
 |---|---|---|
@@ -28,7 +28,7 @@ Site copy: "Without the burnout. Without the overwhelm."
 | adhd burnout recovery | Easy | >100 |
 | autistic burnout recovery | Easy | >100 |
 
-### "burnout in tech" (4 keywords)
+### "burnout in tech" (4 keywords) — ✅ [Published](/blog/burnout-in-tech)
 
 | Keyword | KD | Volume |
 |---|---|---|
@@ -70,7 +70,7 @@ Site copy: "You're not broken. You're just stuck."
 | outgrown my job | N/A | <100 |
 | have i outgrown my job | N/A | <100 |
 
-### "feeling stuck in life" (64 keywords)
+### "feeling stuck in life" (64 keywords) — ✅ [Published](/blog/feeling-stuck-in-life-and-career)
 
 | Keyword | KD | Volume |
 |---|---|---|
@@ -133,7 +133,7 @@ Site copy: "Break out of mental loops and overthinking"
 | adhd analysis paralysis | Easy | <100 |
 | avoiding business analysis paralysis | N/A | <100 |
 
-### "indecisiveness" (366 keywords) — ALL EASY KD
+### "indecisiveness" (366 keywords) — ALL EASY KD — ✅ [Published](/blog/what-causes-indecisiveness)
 
 | Keyword | KD | Volume |
 |---|---|---|
@@ -194,17 +194,17 @@ FAQ content — now rank for it in search.
 | 7 | burnout recovery plan | Easy | >100 | Burnout |
 | 8 | burnout recovery timeline | Easy | >100 | Burnout |
 | 9 | how to overcome analysis paralysis | Easy | >100 | Mental Loops |
-| 10 | what causes indecisiveness | Easy | >100 | Mental Loops |
+| 10 | what causes indecisiveness | Easy | >100 | Mental Loops | ✅ [Published](/blog/what-causes-indecisiveness) |
 | 11 | mental clarity meaning | Easy | >100 | Clarity |
 | 12 | what is mental clarity | Easy | >100 | Clarity |
 | 13 | what causes overthinking | Easy | >100 | Mental Loops |
 | 14 | indecisiveness meaning | Easy | >100 | Mental Loops |
 | 15 | how to overcome indecisiveness | Easy | <100 | Mental Loops |
 | 16 | feeling stuck in career | Easy | <100 | Feeling Stuck |
-| 17 | burnout vs laziness | Easy | <100 | Burnout |
-| 18 | burnout in tech | Easy | <100 | Burnout |
+| 17 | burnout vs laziness | Easy | <100 | Burnout | ✅ [Published](/blog/burnout-vs-laziness) |
+| 18 | burnout in tech | Easy | <100 | Burnout | ✅ [Published](/blog/burnout-in-tech) |
 | 19 | how to stop feeling lost in life | Easy | <100 | Clarity |
-| 20 | feeling stuck in life and career | Easy | <100 | Feeling Stuck |
+| 20 | feeling stuck in life and career | Easy | <100 | Feeling Stuck | ✅ [Published](/blog/feeling-stuck-in-life-and-career) |
 
 ---
 

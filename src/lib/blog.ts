@@ -65,6 +65,21 @@ export function getNextPost(currentSlug: string): Omit<BlogPost, "content"> | nu
   return posts[index + 1] ?? posts[0] ?? null;
 }
 
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+export function extractH2s(content: string): { text: string; slug: string }[] {
+  const matches = content.matchAll(/^## (.+)$/gm);
+  return Array.from(matches).map((m) => ({
+    text: m[1],
+    slug: slugify(m[1]),
+  }));
+}
+
 export function getAllSlugs(): string[] {
   if (!fs.existsSync(CONTENT_DIR)) return [];
   return fs

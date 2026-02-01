@@ -31,7 +31,7 @@ Source: Ahrefs Free Keyword Generator (ahrefs.com/keyword-generator)
 | business mindset coaching | Medium | <100 |
 | mindset coaching program | Hard | <100 |
 
-### "feeling stuck in life" (64 keywords found)
+### "feeling stuck in life" (64 keywords found) — ✅ [Published](/blog/feeling-stuck-in-life-and-career)
 
 | Keyword | KD | Volume |
 |---|---|---|

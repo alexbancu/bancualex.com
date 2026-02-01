@@ -3,16 +3,29 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function StickyPostHeader({ title }: { title: string }) {
+export default function StickyPostHeader({
+  title,
+  readingTime,
+}: {
+  title: string;
+  readingTime: number;
+}) {
   const [visible, setVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     function onScroll() {
       setVisible(window.scrollY > 300);
+      const el = document.documentElement;
+      const scrollTop = el.scrollTop;
+      const scrollHeight = el.scrollHeight - el.clientHeight;
+      setProgress(scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0);
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const minutesLeft = Math.max(1, Math.round(readingTime * (1 - progress / 100)));
 
   return (
     <div
@@ -61,10 +74,23 @@ export default function StickyPostHeader({ title }: { title: string }) {
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
+            flex: 1,
+            textAlign: "center",
           }}
         >
           {title}
         </p>
+        <span
+          style={{
+            fontSize: "0.75rem",
+            color: "var(--color-mid)",
+            flexShrink: 0,
+            minWidth: "5.5rem",
+            textAlign: "right",
+          }}
+        >
+          {progress < 95 ? `${minutesLeft} min left` : "Almost done"}
+        </span>
       </div>
     </div>
   );

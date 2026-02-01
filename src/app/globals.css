@@ -74,3 +74,45 @@ details[open] summary .faq-chevron {
 .faq-chevron {
   transition: transform 0.3s ease;
 }
+
+/* Blog post drop cap */
+.prose-dropcap > p:first-child::first-letter {
+  font-family: var(--font-display);
+  font-weight: 600;
+  float: left;
+  font-size: 3.5em;
+  line-height: 0.8;
+  margin-right: 0.08em;
+  margin-top: 0.05em;
+  color: var(--color-foreground);
+}
+
+/* Blog prose link styling */
+.prose-blog :where(a):not(.no-underline) {
+  color: var(--color-brand) !important;
+  text-decoration-line: underline !important;
+  text-decoration-color: var(--color-brand) !important;
+  text-underline-offset: 3px !important;
+  text-decoration-thickness: 1px !important;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.prose-blog :where(a):not(.no-underline):hover {
+  text-decoration-thickness: 2px !important;
+}
+
+/* Subtle paper texture overlay */
+.paper-texture {
+  position: relative;
+}
+
+.paper-texture::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 0;
+}

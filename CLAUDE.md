@@ -56,12 +56,47 @@ These rules protect search rankings on published content. Breaking them can lose
 
 ## Writing Style
 
-- **Use `docs/` writing guides:** anti-ai-slop rules and Scott Adams writing style.
+- **Use `docs/` writing guides:** anti-ai-slop rules and Scott Adams writing style and blog post formatting standards.
 - **No idioms.** Alex specifically avoids idiomatic expressions.
 - **No AI slop.** No "unlock your potential," "game-changer," "it's not X, it's Y" patterns. See anti-ai-slop guide.
 - **Short sentences.** One thought per sentence. Scott Adams style.
 - **Active voice.** Subject before verb.
 - **Specific over vague.** Real numbers, real research, real examples.
+
+## Blog Post Formatting Standards
+
+These formatting rules apply to all blog posts. Based on research into what drives readability, engagement, and SEO performance.
+
+### Structure & Scannability
+
+- **Use bullet or numbered lists** for any section with 3+ parallel items. Bold-lead paragraphs are acceptable for 2-3 items, but 4+ should be a list.
+- **"What helps" sections** should always use numbered lists or bullet lists. This is the section readers scan for most.
+- **Bold key phrases** to help scanners grab main ideas. Use bold for concept names, statistics, and actionable takeaways. Keep the pattern consistent within each post.
+- **Keep paragraphs to 2-4 sentences max.** One idea per paragraph.
+- **Add a Key Takeaways section** for posts over 1,500 words. Place it after the intro (before the first H2) as 3-4 bullet points.
+
+### Table of Contents
+
+- **Add a TOC for posts with 6+ H2 sections.** Renders as a linked list of H2s between the intro and the first H2. Helps readers jump to what they came for (especially from search). Skip for posts with fewer than 6 H2s.
+
+### Visual Rhythm Breakers
+
+- **Use PullQuote component** for 1-2 standout insights per post. Reserve for statistics or quotes that would make someone stop scrolling.
+- **Use comparison tables** when contrasting two things (e.g., burnout vs laziness signals). Tables scan faster than two prose paragraphs.
+- **One visual per long post** (1,500+ words) if possible. Diagrams, timelines, or comparison tables count.
+
+### Components Available
+
+- `<PullQuote>` — Styled pull quote for standout insights
+- `<Annotation>` — Inline annotation/tooltip
+- Internal links use standard markdown: `[text](/path)`
+
+### Formatting Patterns to Follow
+
+- **Signal comparison sections:** Use bullet lists or tables, not prose paragraphs.
+- **Multi-step advice sections:** Use numbered lists.
+- **Research citations:** Inline with the text. Name the researcher, institution, and finding. No footnotes.
+- **Phase/stage structures:** Use H2 per phase with consistent sub-structure (description, trap, what helps).
 
 ## Design System
 
