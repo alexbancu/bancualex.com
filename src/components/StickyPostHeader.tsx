@@ -35,8 +35,8 @@ export default function StickyPostHeader({
         left: 0,
         right: 0,
         zIndex: 40,
-        background: "var(--color-background)",
-        borderBottom: "1px solid var(--color-surface)",
+        background: "var(--raw-background)",
+        borderBottom: "1px solid var(--raw-surface)",
         transform: visible ? "translateY(0)" : "translateY(-100%)",
         opacity: visible ? 1 : 0,
         transition: "transform 0.3s ease, opacity 0.3s ease",
@@ -57,7 +57,7 @@ export default function StickyPostHeader({
           href="/blog"
           style={{
             fontSize: "0.8rem",
-            color: "var(--color-muted)",
+            color: "var(--raw-muted)",
             textDecoration: "none",
             flexShrink: 0,
           }}
@@ -69,7 +69,7 @@ export default function StickyPostHeader({
             fontFamily: "var(--font-display)",
             fontSize: "0.85rem",
             fontWeight: 500,
-            color: "var(--color-foreground)",
+            color: "var(--raw-foreground)",
             margin: 0,
             overflow: "hidden",
             textOverflow: "ellipsis",
@@ -83,7 +83,7 @@ export default function StickyPostHeader({
         <span
           style={{
             fontSize: "0.75rem",
-            color: "var(--color-mid)",
+            color: "var(--raw-mid)",
             flexShrink: 0,
             minWidth: "5.5rem",
             textAlign: "right",

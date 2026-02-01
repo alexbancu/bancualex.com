@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export const metadata: Metadata = {
   title: "Blog | Alex Bancu",
@@ -25,9 +26,12 @@ export default function BlogIndex() {
       <div className="max-w-2xl mx-auto">
         {/* Intro section with visual separation */}
         <div className="mb-14 pb-10 border-b border-surface animate-fade-up">
-          <p className="font-sub text-sm font-medium tracking-[0.2em] uppercase text-brand mb-4">
-            Blog
-          </p>
+          <div className="flex items-center justify-between mb-4">
+            <p className="font-sub text-sm font-medium tracking-[0.2em] uppercase text-brand">
+              Blog
+            </p>
+            <ThemeToggle />
+          </div>
           <h1 className="heading-tight text-3xl md:text-4xl text-foreground mb-4">
             Writing
           </h1>

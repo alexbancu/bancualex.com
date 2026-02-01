@@ -1,16 +1,44 @@
 @import "tailwindcss";
 
+/* Light theme (default) */
+:root {
+  --raw-brand: #1a5c2e;
+  --raw-brand-hover: #154a25;
+  --raw-brand-light: #e8f0ea;
+  --raw-cta: #1a5c2e;
+  --raw-cta-hover: #154a25;
+  --raw-foreground: #1e2e20;
+  --raw-muted: #4d5e4f;
+  --raw-mid: #8a9a8c;
+  --raw-background: #eef0ee;
+  --raw-surface: #e4e8e4;
+}
+
+/* Dark mode overrides — scoped to blog pages via .blog-dark wrapper */
+.blog-dark {
+  --raw-brand: #4a9960;
+  --raw-brand-hover: #5aab70;
+  --raw-brand-light: #1c2e22;
+  --raw-cta: #4a9960;
+  --raw-cta-hover: #5aab70;
+  --raw-foreground: #dce3dd;
+  --raw-muted: #94a397;
+  --raw-mid: #627066;
+  --raw-background: #151a17;
+  --raw-surface: #1e2620;
+}
+
 @theme inline {
-  --color-brand: #1a5c2e;
-  --color-brand-hover: #154a25;
-  --color-brand-light: #e8f0ea;
-  --color-cta: #1a5c2e;
-  --color-cta-hover: #154a25;
-  --color-foreground: #1e2e20;
-  --color-muted: #4d5e4f;
-  --color-mid: #8a9a8c;
-  --color-background: #eef0ee;
-  --color-surface: #e4e8e4;
+  --color-brand: var(--raw-brand);
+  --color-brand-hover: var(--raw-brand-hover);
+  --color-brand-light: var(--raw-brand-light);
+  --color-cta: var(--raw-cta);
+  --color-cta-hover: var(--raw-cta-hover);
+  --color-foreground: var(--raw-foreground);
+  --color-muted: var(--raw-muted);
+  --color-mid: var(--raw-mid);
+  --color-background: var(--raw-background);
+  --color-surface: var(--raw-surface);
   --font-sans: var(--font-inter);
   --font-display: var(--font-lora);
   --font-sub: var(--font-inter);
@@ -21,8 +49,8 @@ html {
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: var(--raw-background);
+  color: var(--raw-foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -84,14 +112,33 @@ details[open] summary .faq-chevron {
   line-height: 0.8;
   margin-right: 0.08em;
   margin-top: 0.05em;
-  color: var(--color-foreground);
+  color: var(--raw-foreground);
+}
+
+/* Dark mode paper texture uses lighter noise */
+.blog-dark .paper-texture::before {
+  opacity: 0.015;
+}
+
+/* Dark mode prose overrides — Tailwind prose-gray sets its own colors */
+.blog-dark .prose {
+  --tw-prose-body: var(--raw-muted);
+  --tw-prose-headings: var(--raw-foreground);
+  --tw-prose-bold: var(--raw-foreground);
+  --tw-prose-links: var(--raw-brand);
+  --tw-prose-counters: var(--raw-mid);
+  --tw-prose-bullets: var(--raw-mid);
+  --tw-prose-quotes: var(--raw-foreground);
+  --tw-prose-quote-borders: var(--raw-brand);
+  --tw-prose-code: var(--raw-foreground);
+  --tw-prose-hr: var(--raw-surface);
 }
 
 /* Blog prose link styling */
 .prose-blog :where(a):not(.no-underline) {
-  color: var(--color-brand) !important;
+  color: var(--raw-brand) !important;
   text-decoration-line: underline !important;
-  text-decoration-color: var(--color-brand) !important;
+  text-decoration-color: var(--raw-brand) !important;
   text-underline-offset: 3px !important;
   text-decoration-thickness: 1px !important;
   transition: text-decoration-color 0.2s ease;

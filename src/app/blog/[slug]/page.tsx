@@ -10,6 +10,7 @@ import StickyPostHeader from "@/components/StickyPostHeader";
 import TableOfContents from "@/components/TableOfContents";
 import PullQuote from "@/components/PullQuote";
 import Annotation from "@/components/Annotation";
+import ThemeToggle from "@/components/ThemeToggle";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -89,12 +90,15 @@ export default async function BlogPostPage({ params }: Props) {
       <main className="paper-texture min-h-screen bg-background px-6 py-20 md:py-28">
         <div className="relative max-w-2xl mx-auto">
           <div>
-            <Link
-              href="/blog"
-              className="no-underline animate-fade-up text-sm text-muted hover:text-brand transition-colors inline-block mb-10"
-            >
-              &larr; All posts
-            </Link>
+            <div className="animate-fade-up flex items-center justify-between mb-10">
+              <Link
+                href="/blog"
+                className="no-underline text-sm text-muted hover:text-brand transition-colors"
+              >
+                &larr; All posts
+              </Link>
+              <ThemeToggle />
+            </div>
 
             <header className="animate-fade-up animate-delay-100 mb-12">
               <h1 className="heading-tight text-3xl md:text-4xl text-foreground mb-4">

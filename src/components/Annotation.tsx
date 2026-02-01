@@ -16,7 +16,7 @@ export default function Annotation({
       <span
         onClick={() => setOpen(!open)}
         style={{
-          borderBottom: "1px dashed var(--color-brand)",
+          borderBottom: "1px dashed var(--raw-brand)",
           cursor: "pointer",
         }}
       >
@@ -29,8 +29,8 @@ export default function Annotation({
             bottom: "calc(100% + 8px)",
             left: "50%",
             transform: "translateX(-50%)",
-            background: "var(--color-foreground)",
-            color: "var(--color-background)",
+            background: "var(--raw-foreground)",
+            color: "var(--raw-background)",
             fontSize: "0.75rem",
             lineHeight: 1.5,
             padding: "0.5rem 0.75rem",
