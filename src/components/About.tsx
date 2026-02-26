@@ -65,12 +65,9 @@ export default function About() {
           <p className="text-base md:text-lg text-muted leading-[1.8] animate-fade-up animate-delay-400">
             I was already having deep conversations with people around me.
             The kind where someone says &ldquo;how did you figure that
-            out?&rdquo; I decided to do it for real. That became coaching{" "}
-            <strong className="text-foreground font-semibold">
-              30+ people
-            </strong>{" "}
-            through the same patterns. Engineers, founders, creatives. People
-            who check every box on paper and still feel stuck.
+            out?&rdquo; I decided to do it for real. That became coaching
+            people through the same patterns. Engineers, founders, creatives.
+            People who check every box on paper and still feel stuck.
           </p>
         </div>
       </div>

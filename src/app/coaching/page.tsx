@@ -1,105 +1,110 @@
 import type { Metadata } from "next";
-import Hero from "@/components/Hero";
-import ProblemStatement from "@/components/ProblemStatement";
-import Symptoms from "@/components/Symptoms";
-import Services from "@/components/Services";
-import About from "@/components/About";
-import Process from "@/components/Process";
-import CTASection from "@/components/CTASection";
-import FAQ from "@/components/FAQ";
-import Testimonials from "@/components/Testimonials";
+import Image from "next/image";
+import Link from "next/link";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Coaching for High Performers | Alex Bancu",
+  title: "Coaching | Alex Bancu",
   description:
-    "Coaching for people in tech who think too much and feel stuck. We find what's underneath. Decisions get easier.",
+    "I coach people sometimes. Conversations with engineers, founders, and friends who felt stuck. Some of them say it changed something.",
   alternates: {
     canonical: "/coaching",
   },
   openGraph: {
     url: "/coaching",
-    title: "Coaching for High Performers | Alex Bancu",
+    title: "Coaching | Alex Bancu",
     description:
-      "Coaching for people in tech who think too much and feel stuck. We find what's underneath. Decisions get easier.",
+      "I coach people sometimes. Conversations with engineers, founders, and friends who felt stuck. Some of them say it changed something.",
     type: "website",
   },
 };
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What happens in a session?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "We talk. I ask questions that help you see what you're too close to notice. I don't give advice. Most of what holds people back is an emotion they've been avoiding. We find it, feel it, and decisions get easier.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How long is a session?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Sessions are 60 minutes. That gives us enough space to go deep without dragging. Some sessions run a few minutes over if we're in the middle of something important.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How many sessions do I need?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "There's no fixed package. Some people work with me for a few sessions, some for months. We check in regularly and you decide what makes sense. No contracts, no pressure.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Who is this for?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "People who are good at their work but stuck in patterns they can't think their way out of. Engineers, founders, creatives. If your thoughts won't stop looping and your energy is gone, this is probably for you.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How is this different from therapy?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "They're complementary, not competing. Therapy often explores the past in depth. Coaching focuses on where you are now and where you want to go. We work on patterns, emotions, and decisions. If I think therapy would serve you better, I'll say so.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What if it doesn't work for me?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "We start with a free 30-minute call. No commitment. If it feels like we'd work well together, we go from there. If not, I'll tell you. I'd rather be honest than waste your time.",
-      },
-    },
-  ],
-};
+const testimonials = [
+  {
+    quote:
+      "I sleep better, I think better and I feel better. Alex\u2019s calm & focused guidance over a couple sessions helped bring to light more about my long standing struggle with sleep than I managed to eek out over years of introspection. His warm, balanced tone often echoes in my head when I\u2019m faced with difficult decisions, and I feel very grateful for it.",
+    name: "Codrin Gidei",
+    title: "CTO",
+  },
+  {
+    quote:
+      "When we started, I was at a point in life where I was feeling stuck. My business was stagnating for 6 months, and I just couldn\u2019t find the energy to start working again. Talking to Alex made me aware of the main negative thinking patterns holding me back. 2 months in and I\u2019ve already finished more work than I was expecting, started working out and am on path to a huge increase in revenue.",
+    name: "Timotei Centea",
+    title: "Business Owner",
+  },
+  {
+    quote:
+      "A refreshing mix of informality and professionalism, where I could openly share my challenges. His advice stayed with me beyond the session, acting as a mental pep talk during the workday. It helped me push through tasks and maintain productivity instead of postponing them.",
+    name: "Sebastian Palaghita",
+    title: "Software Engineer",
+  },
+];
 
 export default function CoachingPage() {
   return (
-    <>
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-    />
-    <main>
-      <Hero />
-      <ProblemStatement />
-      <Symptoms />
-      <Services />
-      <About />
-      <Testimonials />
-      <Process />
-      <FAQ />
-      <CTASection />
-      <Footer />
+    <main className="max-w-xl mx-auto px-6 py-20 md:py-28">
+      <Link
+        href="/"
+        className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground transition-colors mb-10"
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="rotate-180">
+          <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        Back
+      </Link>
+
+      <div className="flex flex-col items-center text-center mb-12">
+        <Image
+          src="/images/eu.jpg"
+          alt="Alex Bancu"
+          width={56}
+          height={56}
+          className="rounded-full object-cover w-14 h-14 mb-6"
+          priority
+        />
+
+        <h1 className="heading-tight text-2xl md:text-3xl text-foreground mb-4">
+          I coach people sometimes.
+        </h1>
+
+        <p className="text-base md:text-lg text-muted leading-relaxed">
+          I&apos;ve had conversations with engineers, founders, and friends
+          who felt stuck. Some of them say it changed something.
+        </p>
+      </div>
+
+      <hr className="border-gray-200 mb-12" />
+
+      <div className="space-y-10">
+        {testimonials.map((t, i) => (
+          <div key={i}>
+            <p className="text-base md:text-lg text-muted leading-[1.8] italic">
+              &ldquo;{t.quote}&rdquo;
+            </p>
+            <p className="mt-3 text-sm text-foreground">
+              &mdash; {t.name}, {t.title}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <hr className="border-gray-200 mt-12 mb-12" />
+
+      <p className="text-base text-muted leading-relaxed text-center">
+        I&apos;m learning more through Joe Hudson&apos;s Connection Course.
+        <br />
+        If this resonates:{" "}
+        <a
+          href="mailto:coach@bancualex.com"
+          className="text-brand hover:underline"
+        >
+          coach@bancualex.com
+        </a>
+      </p>
+
+      <div className="mt-16">
+        <Footer />
+      </div>
     </main>
-    </>
   );
 }

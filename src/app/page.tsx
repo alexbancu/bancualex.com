@@ -74,13 +74,26 @@ export default async function HubPage() {
           max-width: 720px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: 1fr;
           grid-auto-rows: auto;
           gap: 0.75rem;
         }
 
         @media (min-width: 640px) {
-          .bento-grid { gap: 1rem; }
+          .bento-grid {
+            grid-template-columns: 55fr 45fr;
+            gap: 1rem;
+          }
+        }
+
+        .b-right-col {
+          display: grid;
+          grid-template-rows: 1fr 1fr;
+          gap: 0.75rem;
+        }
+
+        @media (min-width: 640px) {
+          .b-right-col { gap: 1rem; }
         }
 
         /* ── Shared card base ── */
@@ -88,7 +101,7 @@ export default async function HubPage() {
           background: var(--card);
           border: 1px solid var(--accent-border);
           border-radius: var(--radius);
-          padding: 1.5rem;
+          padding: 1.25rem;
           text-decoration: none;
           color: inherit;
           transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
@@ -170,22 +183,21 @@ export default async function HubPage() {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          min-height: 160px;
           position: relative;
           overflow: hidden;
         }
 
         .b-venture-icon {
-          width: 32px;
-          height: 32px;
+          width: 28px;
+          height: 28px;
           display: flex;
           align-items: center;
           justify-content: center;
           background: var(--accent-soft);
-          border-radius: 8px;
+          border-radius: 7px;
           font-size: 0.8rem;
           color: var(--accent);
-          margin-bottom: 1rem;
+          margin-bottom: 0.65rem;
         }
 
         .b-venture-title {
@@ -201,8 +213,7 @@ export default async function HubPage() {
           font-size: 0.78rem;
           line-height: 1.5;
           color: var(--mute);
-          margin: 0 0 1rem;
-          flex: 1;
+          margin: 0 0 0.6rem;
         }
 
         .b-venture-cta {
@@ -280,7 +291,6 @@ export default async function HubPage() {
         .b-writing {
           display: flex;
           flex-direction: column;
-          min-height: 160px;
         }
 
         .b-substack-link {
@@ -477,8 +487,8 @@ export default async function HubPage() {
           </div>
         </div>
 
-        {/* 2 — Writing / Substack (2 col) */}
-        <div className="b-card b-writing b-2col">
+        {/* 2 — Writing / Substack */}
+        <div className="b-card b-writing b-mobile-full">
           <div>
             <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></div>
             <h2 className="b-venture-title">Writing</h2>
@@ -514,58 +524,44 @@ export default async function HubPage() {
           </div>
         </div>
 
-        {/* 3 — Software (1 col) */}
-        <a
-          href="https://www.linkedin.com/in/bancucristianalexandru/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="b-card b-venture b-mobile-full"
-        >
-          <div>
-            <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
-            <h2 className="b-venture-title">Software</h2>
-            <p className="b-venture-desc">
-              <CountUp end={9} suffix="+" /> years shipping React &amp; TypeScript at scale. Independent contractor. Remote since 2020.
-            </p>
-            <p className="b-venture-desc" style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
-              React · TypeScript · Next.js · Node.js · Datadog
-            </p>
-          </div>
-          <span className="b-venture-cta">
-            LinkedIn
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </span>
-        </a>
+        {/* Right column: Software + Coaching stacked */}
+        <div className="b-right-col">
+          <a
+            href="https://www.linkedin.com/in/bancucristianalexandru/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="b-card b-venture"
+          >
+            <div>
+              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+              <h2 className="b-venture-title">Software</h2>
+              <p className="b-venture-desc">
+                <CountUp end={9} suffix="+" /> years shipping React &amp; TypeScript at scale. Independent contractor. Remote since 2020.
+              </p>
+              <p className="b-venture-desc" style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
+                React · TypeScript · Next.js · Node.js · Datadog
+              </p>
+            </div>
+            <span className="b-venture-cta">
+              LinkedIn
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </span>
+          </a>
 
-        {/* 4 — Coaching (1 col, accent) */}
-        <Link href="/coaching" className="b-card b-venture b-coaching b-mobile-full">
-          <div>
-            <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
-            <h2 className="b-venture-title">Coaching</h2>
-            <p className="b-venture-desc">
-              Clear the mental noise. Decisions get easier.
-            </p>
-          </div>
-          <span className="b-venture-cta">
-            Learn more
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </span>
-        </Link>
-
-        {/* 6 — Blog (2 col) */}
-        <Link href="/blog" className="b-card b-venture b-2col">
-          <div>
-            <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-            <h2 className="b-venture-title">Blog</h2>
-            <p className="b-venture-desc">
-              Research-backed writing on why smart people feel stuck, burn out, and overthink.
-            </p>
-          </div>
-          <span className="b-venture-cta">
-            All posts
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </span>
-        </Link>
+          <Link href="/coaching" className="b-card b-venture">
+            <div>
+              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+              <h2 className="b-venture-title">Coaching</h2>
+              <p className="b-venture-desc">
+                I sometimes coach people. Here&apos;s what they said.
+              </p>
+            </div>
+            <span className="b-venture-cta">
+              Read more
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </span>
+          </Link>
+        </div>
 
       </div>
 
