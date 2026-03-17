@@ -488,63 +488,66 @@ export default async function HubPage() {
           </div>
         </div>
 
-        {/* 2 — Writing / Substack */}
-        <div className="b-card b-writing b-mobile-full">
+        {/* 2 — AI & Documents (left column, big card) */}
+        <a
+          href="https://www.linkedin.com/in/bancucristianalexandru/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="b-card b-venture b-mobile-full"
+        >
           <div>
-            <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></div>
-            <h2 className="b-venture-title">Writing</h2>
+            <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><polyline points="14 2 14 8 20 8"/><circle cx="11" cy="15" r="3"/><path d="m21 21-1.9-1.9"/></svg></div>
+            <h2 className="b-venture-title">AI & Documents</h2>
             <p className="b-venture-desc">
-              Learning, emotions, parenting, performance. Some practical. Some just me figuring it out.
+              Building tools that help teams search and understand large document collections. Tax, legal, compliance.
             </p>
-            <a
-              href="https://alexbancu.substack.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="b-substack-link"
-            >
-              Read on Substack
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </a>
+            <p className="b-venture-desc">
+              Currently prototyping on Romanian fiscal documentation.
+            </p>
           </div>
-          {substackPost && (
-            <a
-              href={substackPost.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="b-substack-latest"
-            >
-              <p className="b-substack-label">Latest</p>
-              <p className="b-substack-title">{substackPost.title}</p>
-              {substackPost.subtitle && (
-                <p className="b-substack-subtitle">{substackPost.subtitle}</p>
-              )}
-            </a>
-          )}
-          <div className="b-substack-subscribe">
-            <SubstackSubscribe />
-          </div>
-        </div>
+          <span className="b-venture-cta">
+            See my LinkedIn
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </span>
+        </a>
 
-        {/* Right column: AI & Documents + Software + Coaching stacked */}
+        {/* Right column: Writing + Software + Coaching stacked */}
         <div className="b-right-col">
-          <a
-            href="https://www.linkedin.com/in/bancucristianalexandru/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="b-card b-venture"
-          >
+          <div className="b-card b-writing">
             <div>
-              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><polyline points="14 2 14 8 20 8"/><circle cx="11" cy="15" r="3"/><path d="m21 21-1.9-1.9"/></svg></div>
-              <h2 className="b-venture-title">AI & Documents</h2>
+              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></div>
+              <h2 className="b-venture-title">Writing</h2>
               <p className="b-venture-desc">
-                Building tools that help teams search and understand large document collections. Tax, legal, compliance.
+                Learning, emotions, parenting, performance. Some practical. Some just me figuring it out.
               </p>
+              <a
+                href="https://alexbancu.substack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="b-substack-link"
+              >
+                Read on Substack
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </a>
             </div>
-            <span className="b-venture-cta">
-              See my LinkedIn
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </span>
-          </a>
+            {substackPost && (
+              <a
+                href={substackPost.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="b-substack-latest"
+              >
+                <p className="b-substack-label">Latest</p>
+                <p className="b-substack-title">{substackPost.title}</p>
+                {substackPost.subtitle && (
+                  <p className="b-substack-subtitle">{substackPost.subtitle}</p>
+                )}
+              </a>
+            )}
+            <div className="b-substack-subscribe">
+              <SubstackSubscribe />
+            </div>
+          </div>
 
           <a
             href="https://www.linkedin.com/in/bancucristianalexandru/"
