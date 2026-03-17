@@ -185,7 +185,6 @@ export default async function HubPage() {
         .b-venture {
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
           position: relative;
           overflow: hidden;
         }
@@ -226,6 +225,7 @@ export default async function HubPage() {
           display: inline-flex;
           align-items: center;
           gap: 0.35rem;
+          margin-top: 0.4rem;
         }
 
         .b-venture-cta svg {
