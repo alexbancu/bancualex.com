@@ -88,8 +88,12 @@ export default async function HubPage() {
 
         .b-right-col {
           display: grid;
-          grid-template-rows: 1fr 1fr 1fr;
+          grid-template-rows: auto auto auto;
           gap: 0.75rem;
+        }
+
+        .b-card.b-venture.b-mobile-full {
+          align-self: start;
         }
 
         @media (min-width: 640px) {
