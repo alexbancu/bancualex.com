@@ -37,7 +37,7 @@ export default async function HubPage() {
           --card-alt: #f2f5f2;
           --text: #1e2e20;
           --sub: #4d5e4f;
-          --mute: #8a9a8c;
+          --mute: #5c6e5e;
           --accent: #1a5c2e;
           --accent-soft: rgba(26, 92, 46, 0.07);
           --accent-border: rgba(26, 92, 46, 0.10);
@@ -213,7 +213,7 @@ export default async function HubPage() {
         }
 
         .b-venture-desc {
-          font-size: 0.78rem;
+          font-size: 0.84rem;
           line-height: 1.5;
           color: var(--mute);
           margin: 0 0 0.6rem;
