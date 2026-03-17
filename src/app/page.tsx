@@ -88,8 +88,8 @@ export default async function HubPage() {
 
         .b-left-col,
         .b-right-col {
-          display: grid;
-          grid-template-rows: auto auto;
+          display: flex;
+          flex-direction: column;
           gap: 0.75rem;
         }
 
