@@ -88,7 +88,7 @@ export default async function HubPage() {
 
         .b-right-col {
           display: grid;
-          grid-template-rows: 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
           gap: 0.75rem;
         }
 
@@ -123,6 +123,7 @@ export default async function HubPage() {
         .b-card:nth-child(5) { animation-delay: 0.25s; }
         .b-card:nth-child(6) { animation-delay: 0.3s; }
         .b-card:nth-child(7) { animation-delay: 0.35s; }
+        .b-card:nth-child(8) { animation-delay: 0.4s; }
         /* ── Spans ── */
         .b-full { grid-column: 1 / -1; }
         .b-2col { grid-column: span 2; }
@@ -482,7 +483,7 @@ export default async function HubPage() {
           <div className="b-id-text">
             <h1 className="b-name">Alex Bancu</h1>
             <p className="b-bio">
-              Software engineer. Dad. Figuring things out in public.
+              Software engineer. Dad. Building AI tools. Figuring things out in public.
             </p>
           </div>
         </div>
@@ -524,8 +525,27 @@ export default async function HubPage() {
           </div>
         </div>
 
-        {/* Right column: Software + Coaching stacked */}
+        {/* Right column: AI & Documents + Software + Coaching stacked */}
         <div className="b-right-col">
+          <a
+            href="https://www.linkedin.com/in/bancucristianalexandru/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="b-card b-venture"
+          >
+            <div>
+              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><polyline points="14 2 14 8 20 8"/><circle cx="11" cy="15" r="3"/><path d="m21 21-1.9-1.9"/></svg></div>
+              <h2 className="b-venture-title">AI & Documents</h2>
+              <p className="b-venture-desc">
+                Building tools that help teams search and understand large document collections. Tax, legal, compliance.
+              </p>
+            </div>
+            <span className="b-venture-cta">
+              See my LinkedIn
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </span>
+          </a>
+
           <a
             href="https://www.linkedin.com/in/bancucristianalexandru/"
             target="_blank"
