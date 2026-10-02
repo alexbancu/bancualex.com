@@ -4,6 +4,18 @@ import { getLatestSubstackPost } from "@/lib/substack";
 import SubstackSubscribe from "@/components/SubstackSubscribe";
 import CountUp from "@/components/CountUp";
 
+const LINKEDIN = "https://www.linkedin.com/in/bancucristianalexandru/";
+const SUBSTACK = "https://alexbancu.substack.com";
+const EMAIL = "alex@bancualex.com";
+
+function Arrow() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export default async function HubPage() {
   const substackPost = await getLatestSubstackPost();
 
@@ -15,10 +27,7 @@ export default async function HubPage() {
     jobTitle: "Senior Software Engineer",
     description:
       "Senior software engineer. 10+ years building software, mostly React and TypeScript, plus Node. I work with AI coding agents and write on Substack.",
-    sameAs: [
-      "https://www.linkedin.com/in/bancucristianalexandru/",
-      "https://alexbancu.substack.com",
-    ],
+    sameAs: [LINKEDIN, SUBSTACK],
   };
 
   return (
@@ -31,302 +40,345 @@ export default async function HubPage() {
       <style>{`
         .bento {
           --bg: #eef0ee;
-          --card: #f8faf8;
-          --card-alt: #f2f5f2;
+          --card: #ffffff;
+          --tint: #f1f5f1;
           --text: #1e2e20;
           --sub: #4d5e4f;
           --mute: #5c6e5e;
           --accent: #1a5c2e;
-          --accent-soft: rgba(26, 92, 46, 0.07);
-          --accent-border: rgba(26, 92, 46, 0.10);
-          --accent-hover: rgba(26, 92, 46, 0.18);
+          --accent-hover: #154a25;
+          --field-border: #d6dfd7;
+          --shadow: 0 1px 2px rgba(30, 46, 32, 0.04), 0 4px 16px rgba(30, 46, 32, 0.05);
+          --shadow-hover: 0 2px 4px rgba(30, 46, 32, 0.05), 0 12px 32px rgba(30, 46, 32, 0.09);
           --radius: 16px;
           --font-h: var(--font-lora), Georgia, serif;
           --font-b: var(--font-inter), -apple-system, sans-serif;
 
+          /* Type scale: 12 / 15 / 18 / 34. Weights: 400 and 600.
+             The email input alone uses 16px, so iOS Safari doesn't zoom on tap. */
+          --fs-meta: 0.75rem;
+          --fs-body: 0.9375rem;
+          --fs-title: 1.125rem;
+          --fs-name: 2.125rem;
+
           min-height: 100dvh;
+          padding: 0 16px;
           background: var(--bg);
           color: var(--text);
           font-family: var(--font-b);
           -webkit-font-smoothing: antialiased;
-          padding: 1rem;
         }
 
-        @media (min-width: 640px) {
-          .bento { padding: 1.5rem; }
-        }
-
-        /* Grain */
-        .bento::before {
-          content: '';
-          position: fixed;
-          inset: 0;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        .bento > * { position: relative; z-index: 1; }
-
-        .bento-grid {
-          max-width: 720px;
+        .b-page {
+          max-width: 760px;
           margin: 0 auto;
-          display: grid;
-          grid-template-columns: minmax(0, 1fr);
-          grid-auto-rows: auto;
-          gap: 0.75rem;
+          padding: 56px 0 24px;
         }
 
-        /* minmax(0, …) keeps the 55/45 split even when a card's content
-           (like the email input) has a wide intrinsic size. */
-        @media (min-width: 640px) {
-          .bento-grid {
-            grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
-            gap: 1rem;
-          }
-        }
-
-        /* ── Shared card base ── */
-        .b-card {
-          background: var(--card);
-          border: 1px solid var(--accent-border);
-          border-radius: var(--radius);
-          padding: 1.25rem;
-          text-decoration: none;
-          color: inherit;
-          transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-          opacity: 0;
-          animation: brise 0.6s ease-out forwards;
-        }
-
-        a.b-card:hover, .b-card-link:hover {
-          border-color: var(--accent-hover);
-          box-shadow: 0 6px 24px rgba(26, 92, 46, 0.06);
-          transform: translateY(-2px);
-        }
-
-        /* Stagger */
-        .b-card:nth-child(1) { animation-delay: 0.05s; }
-        .b-card:nth-child(2) { animation-delay: 0.1s; }
-        .b-card:nth-child(3) { animation-delay: 0.15s; }
-        .b-card:nth-child(4) { animation-delay: 0.2s; }
-        .b-card:nth-child(5) { animation-delay: 0.25s; }
-        .b-card:nth-child(6) { animation-delay: 0.3s; }
-        .b-card:nth-child(7) { animation-delay: 0.35s; }
-        .b-card:nth-child(8) { animation-delay: 0.4s; }
-        /* ── Spans ── */
-        .b-full { grid-column: 1 / -1; }
-        .b-2col { grid-column: span 2; }
-
-        @media (max-width: 639px) {
-          .bento-grid { grid-template-columns: minmax(0, 1fr); }
-          .b-2col { grid-column: 1 / -1; }
-          .b-full { grid-column: 1 / -1; }
-          .b-mobile-full { grid-column: 1 / -1; }
-        }
-
-        /* ── 1. Identity card (full width) ── */
-        .b-identity {
+        /* ── Hero: name, role, one primary action. No box around it. ── */
+        .b-hero {
           display: flex;
           align-items: center;
-          gap: 1.5rem;
-          padding: 1.75rem 2rem;
-        }
-
-        @media (max-width: 639px) {
-          .b-identity {
-            flex-direction: column;
-            text-align: center;
-            padding: 2rem 1.5rem;
-          }
+          gap: 28px;
+          padding-bottom: 40px;
         }
 
         .b-avatar {
-          width: 80px;
-          height: 80px;
+          width: 104px;
+          height: 104px;
+          flex-shrink: 0;
           border-radius: 50%;
           object-fit: cover;
-          border: 2px solid var(--accent-border);
-          box-shadow: 0 0 0 3px var(--card), 0 2px 12px rgba(26, 92, 46, 0.06);
-          flex-shrink: 0;
+          box-shadow: 0 0 0 4px var(--card), var(--shadow);
         }
-
-        .b-id-text { flex: 1; }
 
         .b-name {
-          font-family: var(--font-h);
-          font-weight: 500;
-          font-size: 1.65rem;
-          line-height: 1.15;
-          letter-spacing: -0.025em;
-          margin: 0 0 0.35rem;
-        }
-
-        .b-bio {
-          font-size: 0.95rem;
-          line-height: 1.55;
-          color: var(--sub);
           margin: 0;
+          font-family: var(--font-h);
+          font-size: var(--fs-name);
+          font-weight: 600;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
         }
 
-        .b-email {
+        .b-role {
+          margin: 8px 0 18px;
+          font-size: var(--fs-title);
+          line-height: 1.45;
+          color: var(--sub);
+        }
+
+        .b-btn-primary {
           display: inline-flex;
           align-items: center;
-          gap: 0.45rem;
-          min-height: 36px;
-          margin-top: 0.75rem;
-          padding: 0 0.85rem;
+          gap: 8px;
+          height: 44px;
+          padding: 0 20px;
           border-radius: 999px;
-          border: 1px solid var(--accent-border);
-          background: var(--accent-soft);
-          color: var(--accent);
-          font-size: 0.82rem;
-          font-weight: 500;
+          background: var(--accent);
+          color: #fff;
+          font-size: var(--fs-body);
+          font-weight: 600;
           text-decoration: none;
-          transition: background 0.2s, border-color 0.2s;
+          box-shadow: 0 1px 2px rgba(26, 92, 46, 0.2), 0 6px 16px -6px rgba(26, 92, 46, 0.45);
+          transition: background 0.2s;
         }
 
-        .b-email:hover {
-          background: rgba(26, 92, 46, 0.12);
-          border-color: var(--accent-hover);
+        .b-btn-primary:hover { background: var(--accent-hover); }
+
+        /* ── Cards: white on grey, separated by shadow, no borders ── */
+        .b-grid {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr);
+          gap: 16px;
         }
 
-        /* ── 2. Venture cards ── */
-        .b-venture {
+        @media (min-width: 640px) {
+          .b-grid {
+            grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+            gap: 20px;
+          }
+        }
+
+        .b-card {
           display: flex;
           flex-direction: column;
-          position: relative;
-          overflow: hidden;
+          gap: 12px;
+          padding: 24px;
+          border-radius: var(--radius);
+          background: var(--card);
+          box-shadow: var(--shadow);
+          color: inherit;
+          text-decoration: none;
+          transition: box-shadow 0.25s, transform 0.25s;
         }
 
-        .b-venture-icon {
-          width: 28px;
-          height: 28px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: var(--accent-soft);
-          border-radius: 7px;
-          font-size: 0.8rem;
-          color: var(--accent);
-          margin-bottom: 0.65rem;
+        a.b-card:hover {
+          box-shadow: var(--shadow-hover);
+          transform: translateY(-2px);
         }
 
-        .b-venture-title {
+        .b-title {
+          margin: 0;
           font-family: var(--font-h);
-          font-weight: 500;
-          font-size: 1.1rem;
-          line-height: 1.25;
-          letter-spacing: -0.01em;
-          margin: 0 0 0.4rem;
-        }
-
-        .b-venture-desc {
-          font-size: 0.84rem;
-          line-height: 1.5;
-          color: var(--mute);
-          margin: 0 0 0.6rem;
-        }
-
-        .b-venture-cta {
-          font-size: 0.75rem;
+          font-size: var(--fs-title);
           font-weight: 600;
-          color: var(--accent);
-          display: inline-flex;
-          align-items: center;
-          gap: 0.35rem;
-          /* sits at the card's bottom edge, with room above it */
-          margin-top: auto;
-          padding-top: 0.9rem;
+          line-height: 1.3;
         }
 
-        .b-venture-cta svg {
-          transition: transform 0.2s;
+        .b-text {
+          margin: 0;
+          font-size: var(--fs-body);
+          line-height: 1.6;
+          color: var(--sub);
         }
 
-        a.b-card:hover .b-venture-cta svg {
-          transform: translateX(3px);
-        }
-
-        /* ── Software card: stack tags + "Worked with" ── */
-        .b-stack {
+        .b-tags {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.35rem;
-          margin: 0.2rem 0 0;
+          gap: 6px;
+          margin: 0;
           padding: 0;
           list-style: none;
         }
 
-        .b-stack li {
-          padding: 0.2rem 0.55rem;
+        .b-tags li {
+          padding: 4px 10px;
           border-radius: 999px;
-          border: 1px solid var(--accent-border);
-          background: var(--accent-soft);
+          background: var(--tint);
           color: var(--sub);
-          font-size: 0.7rem;
-          font-weight: 500;
-          line-height: 1.4;
+          font-size: var(--fs-meta);
+          font-weight: 600;
         }
 
         .b-worked {
-          margin-top: 0.9rem;
-          padding-top: 0.75rem;
-          border-top: 1px solid var(--accent-border);
-        }
-
-        .b-label {
-          font-size: 0.6rem;
-          font-weight: 600;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          color: var(--mute);
-          margin: 0 0 0.35rem;
-        }
-
-        .b-clients {
           display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          row-gap: 0.15rem;
-          margin: 0;
-          padding: 0;
-          list-style: none;
-          font-family: var(--font-h);
-          font-size: 0.92rem;
-          line-height: 1.4;
-          color: var(--text);
+          flex-direction: column;
+          gap: 2px;
         }
 
-        /* Separator dot drawn as a shape, so screen readers have nothing to announce */
-        .b-clients li + li::before {
-          content: "";
+        .b-worked .b-text { color: var(--text); }
+
+        /* each client name stays whole when the line wraps */
+        .b-nw { white-space: nowrap; }
+
+        /* Separator dot drawn as a shape: screen readers hear the hidden commas */
+        .b-dot {
           display: inline-block;
           width: 3px;
           height: 3px;
-          margin: 0 0.55rem;
+          margin: 0 8px;
           border-radius: 50%;
           background: var(--mute);
           vertical-align: middle;
         }
 
-        /* Coaching: one slim full-width row under Software and Writing */
+        .b-cta {
+          display: inline-flex;
+          align-self: flex-start;
+          align-items: center;
+          gap: 6px;
+          margin-top: 4px;
+          color: var(--accent);
+          font-size: var(--fs-body);
+          font-weight: 600;
+          text-decoration: none;
+        }
+
+        .b-cta svg { transition: transform 0.2s; }
+        a.b-card:hover .b-cta svg,
+        a.b-cta:hover svg { transform: translateX(3px); }
+
+        /* ── Writing: the latest post leads, subscribe is secondary ── */
+        .b-post {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          padding: 14px 16px;
+          border-radius: 12px;
+          background: var(--tint);
+          color: inherit;
+          text-decoration: none;
+          transition: background 0.2s;
+        }
+
+        .b-post:hover { background: #e7eee7; }
+
+        .b-meta {
+          font-size: var(--fs-meta);
+          color: var(--mute);
+        }
+
+        .b-post-title {
+          font-family: var(--font-h);
+          font-size: var(--fs-body);
+          font-weight: 600;
+          line-height: 1.35;
+          color: var(--text);
+        }
+
+        .b-post-sub {
+          font-size: var(--fs-meta);
+          line-height: 1.5;
+          color: var(--sub);
+        }
+
+        .b-subscribe {
+          margin-top: auto;
+          padding-top: 4px;
+        }
+
+        /* Restyle the shared SubstackSubscribe component (it ships Tailwind classes).
+           Wraps when the card is narrow: the button drops below and fills the row. */
+        .b-subscribe form {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          max-width: none;
+          margin: 0;
+        }
+
+        .b-subscribe input[type="email"] {
+          all: unset;
+          box-sizing: border-box;
+          flex: 999 1 150px;
+          min-width: 0;
+          height: 44px;
+          padding: 0 16px;
+          border: 1px solid var(--field-border);
+          border-radius: 999px;
+          background: var(--card);
+          color: var(--text);
+          font-family: var(--font-b);
+          font-size: 16px;
+          transition: border-color 0.2s;
+        }
+
+        .b-subscribe input[type="email"]::placeholder { color: var(--mute); }
+        .b-subscribe input[type="email"]:focus { border-color: var(--accent); }
+
+        .b-subscribe button[type="submit"] {
+          all: unset;
+          box-sizing: border-box;
+          flex: 1 0 auto;
+          height: 44px;
+          padding: 0 18px;
+          border: 1.5px solid var(--accent);
+          border-radius: 999px;
+          color: var(--accent);
+          font-family: var(--font-b);
+          font-size: var(--fs-body);
+          font-weight: 600;
+          text-align: center;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+
+        .b-subscribe button[type="submit"]:hover { background: var(--tint); }
+
+        .b-subscribe input:disabled,
+        .b-subscribe button:disabled { opacity: 0.5; }
+
+        .b-subscribe > div,
+        .b-subscribe p {
+          margin: 0;
+          font-size: var(--fs-body);
+          text-align: left;
+        }
+
+        /* ── Coaching: one slim row under the two cards ── */
+        .b-coaching { grid-column: 1 / -1; }
+
         @media (min-width: 640px) {
-          .b-venture.b-coaching-row {
+          .b-coaching {
             flex-direction: row;
             align-items: center;
-            gap: 1.25rem;
+            gap: 16px;
           }
 
-          .b-coaching-row > div { flex: 1; }
+          .b-coaching .b-text { flex: 1; }
 
-          .b-coaching-row .b-venture-desc { margin-bottom: 0; }
-
-          .b-coaching-row .b-venture-cta {
+          .b-coaching .b-cta {
             margin-top: 0;
-            padding-top: 0;
             white-space: nowrap;
           }
+        }
+
+        /* ── Footer ── */
+        .b-footer {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+          padding: 40px 0 8px;
+        }
+
+        .b-socials {
+          display: flex;
+          gap: 8px;
+        }
+
+        /* 40px boxes so each icon is an easy tap target */
+        .b-social {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          color: var(--mute);
+          transition: color 0.2s, background 0.2s;
+        }
+
+        .b-social:hover {
+          color: var(--accent);
+          background: var(--tint);
+        }
+
+        .b-copyright {
+          margin: 0;
+          font-size: var(--fs-meta);
+          color: var(--mute);
         }
 
         /* ── Keyboard focus ── */
@@ -339,374 +391,127 @@ export default async function HubPage() {
 
         .bento a.b-card:focus-visible { outline-offset: 4px; }
 
-        /* ── Latest Substack post inside Writing card ── */
-        .b-substack-latest {
-          margin-top: 0.5rem;
-          padding-top: 0.5rem;
-          border-top: 1px solid var(--accent-border);
+        /* ── Mobile ── */
+        @media (max-width: 639px) {
+          .b-page { padding-top: 32px; }
+
+          .b-hero {
+            flex-direction: column;
+            gap: 18px;
+            padding-bottom: 32px;
+            text-align: center;
+          }
+
+          .b-avatar {
+            width: 96px;
+            height: 96px;
+          }
         }
 
-        .b-substack-label {
-          font-size: 0.6rem;
-          font-weight: 600;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          color: var(--mute);
-          margin: 0 0 0.35rem;
+        /* ── Load sequence. Animates "translate", not "transform",
+           so it never blocks the cards' hover lift. ── */
+        @media (prefers-reduced-motion: no-preference) {
+          .b-hero,
+          .b-grid > *,
+          .b-footer {
+            animation: brise 0.6s ease-out both;
+          }
+
+          .b-grid > :nth-child(1) { animation-delay: 0.08s; }
+          .b-grid > :nth-child(2) { animation-delay: 0.14s; }
+          .b-grid > :nth-child(3) { animation-delay: 0.2s; }
+          .b-footer { animation-delay: 0.3s; }
         }
 
-        .b-substack-title {
-          font-family: var(--font-h);
-          font-weight: 500;
-          font-size: 0.85rem;
-          line-height: 1.35;
-          color: var(--text);
-          margin: 0;
-        }
-
-        .b-substack-subtitle {
-          font-size: 0.75rem;
-          line-height: 1.45;
-          color: var(--mute);
-          margin: 0.2rem 0 0;
-        }
-
-        a.b-substack-latest {
-          text-decoration: none;
-          color: inherit;
-          display: block;
-          border-radius: 8px;
-          margin: 0.75rem -0.5rem 0;
-          padding: 0.5rem;
-          transition: background 0.2s;
-        }
-
-        a.b-substack-latest:hover {
-          background: var(--accent-soft);
-        }
-
-        a.b-substack-latest .b-substack-title {
-          transition: color 0.2s;
-        }
-
-        a.b-substack-latest:hover .b-substack-title {
-          color: var(--accent);
-        }
-
-        /* ── Writing card (non-link) ── */
-        .b-writing {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .b-substack-link {
-          font-size: 0.75rem;
-          font-weight: 600;
-          color: var(--accent);
-          text-decoration: none;
-          display: inline-flex;
-          align-items: center;
-          gap: 0.35rem;
-          margin-top: 0.6rem;
-          transition: opacity 0.2s;
-        }
-
-        .b-substack-link:hover {
-          opacity: 0.7;
-        }
-
-        .b-substack-subscribe {
-          margin-top: auto;
-          padding-top: 0.75rem;
-          border-top: 1px solid var(--accent-border);
-        }
-
-        /* Override Tailwind styles from SubstackSubscribe inside hub */
-        /* Wraps when the card is narrow (tablet): the button drops below
-           and fills the row instead of squeezing the email field. */
-        .b-substack-subscribe form {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.4rem;
-          align-items: center;
-          max-width: none;
-          margin: 0;
-        }
-
-        .b-substack-subscribe input[type="email"] {
-          all: unset;
-          box-sizing: border-box;
-          /* grows ~1000x faster than the button, so on one row the button stays
-             content-width; once wrapped, the button grows to fill its row */
-          flex: 999 1 165px;
-          min-width: 0;
-          height: 40px;
-          padding: 0 0.75rem;
-          border-radius: 8px;
-          border: 1px solid var(--accent-border);
-          background: var(--bg);
-          color: var(--text);
-          font-family: var(--font-b);
-          /* 16px or more, or iOS Safari zooms the page when the field is tapped */
-          font-size: 16px;
-          transition: border-color 0.2s;
-        }
-
-        .b-substack-subscribe input[type="email"]::placeholder {
-          color: var(--mute);
-        }
-
-        .b-substack-subscribe input[type="email"]:focus {
-          border-color: var(--accent);
-        }
-
-        .b-substack-subscribe button[type="submit"] {
-          all: unset;
-          box-sizing: border-box;
-          flex: 1 0 auto;
-          height: 40px;
-          padding: 0 1rem;
-          border-radius: 8px;
-          background: var(--accent);
-          color: #f0f5f1;
-          font-family: var(--font-b);
-          font-size: 0.78rem;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background 0.2s;
-          white-space: nowrap;
-          text-align: center;
-        }
-
-        .b-substack-subscribe button[type="submit"]:hover {
-          background: #24763b;
-        }
-
-        .b-substack-subscribe button[type="submit"]:disabled,
-        .b-substack-subscribe input[type="email"]:disabled {
-          opacity: 0.5;
-        }
-
-        /* Success / error states */
-        .b-substack-subscribe > div,
-        .b-substack-subscribe > p {
-          font-size: 0.75rem;
-          font-family: var(--font-b);
-          text-align: left;
-        }
-
-        /* ── 3. Coaching accent card ── */
-        .b-coaching {
-          background: var(--accent);
-          border-color: var(--accent);
-          color: #f0f5f1;
-        }
-
-        .b-coaching .b-venture-icon {
-          background: rgba(255, 255, 255, 0.15);
-          color: #f0f5f1;
-        }
-
-        .b-coaching .b-venture-desc {
-          color: rgba(240, 245, 241, 0.7);
-        }
-
-        .b-coaching .b-venture-cta {
-          color: #f0f5f1;
-        }
-
-        a.b-card.b-coaching:hover {
-          border-color: #24763b;
-          box-shadow: 0 6px 24px rgba(26, 92, 46, 0.2);
-        }
-
-        /* ── Footer ── */
-        .b-footer {
-          text-align: center;
-          padding: 2rem 0 1rem;
-          max-width: 720px;
-          margin: 0 auto;
-          opacity: 0;
-          animation: brise 0.6s ease-out 0.5s forwards;
-        }
-
-        .b-socials-row {
-          display: flex;
-          gap: 0.5rem;
-          justify-content: center;
-          flex-wrap: wrap;
-          margin-bottom: 0.75rem;
-        }
-
-        /* 40px boxes so each icon is an easy tap target */
-        .b-social {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-          color: var(--mute);
-          text-decoration: none;
-          transition: color 0.2s, background 0.2s;
-        }
-
-        .b-social:hover {
-          color: var(--accent);
-          background: var(--accent-soft);
-        }
-
-        .b-social svg {
-          display: block;
-          width: 18px;
-          height: 18px;
-        }
-
-        .b-copyright {
-          font-size: 0.68rem;
-          color: var(--mute);
-          margin: 0;
-        }
-
-        /* ── Coaching hover glow ── */
-        a.b-card.b-coaching:hover {
-          border-color: #24763b;
-          box-shadow: 0 6px 32px rgba(26, 92, 46, 0.25), 0 0 0 1px rgba(26, 92, 46, 0.15);
-        }
-
-        /* ── Animations ── */
-        /* Animates "translate", not "transform": a forwards-filled transform
-           would override the cards' hover lift for the life of the page. */
         @keyframes brise {
           from { opacity: 0; translate: 0 10px; }
           to { opacity: 1; translate: 0 0; }
         }
-
-        @media (prefers-reduced-motion: reduce) {
-          .b-card, .b-footer {
-            opacity: 1 !important;
-            animation: none !important;
-          }
-        }
       `}</style>
 
-      <div className="bento-grid">
-        {/* 1 — Identity (full width) */}
-        <div className="b-card b-identity b-full">
+      <main className="b-page">
+        <header className="b-hero">
           <Image
             src="/images/alex-2026.jpg"
             alt="Alex Bancu"
-            width={80}
-            height={80}
+            width={104}
+            height={104}
             className="b-avatar"
             priority
           />
-          <div className="b-id-text">
+          <div>
             <h1 className="b-name">Alex Bancu</h1>
-            <p className="b-bio">
+            <p className="b-role">
               Senior software engineer in Cluj, Romania. React, TypeScript, Node. Dad.
             </p>
-            <a href="mailto:alex@bancualex.com" className="b-email">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-              alex@bancualex.com
+            <a href={`mailto:${EMAIL}`} className="b-btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              {EMAIL}
             </a>
           </div>
-        </div>
+        </header>
 
-        {/* Row 2: Software (55%) and Writing (45%). Row 3: Coaching, full width. */}
-          <a
-            href="https://www.linkedin.com/in/bancucristianalexandru/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="b-card b-venture"
-          >
-            <div>
-              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
-              <h2 className="b-venture-title">Software</h2>
-              <p className="b-venture-desc">
-                <CountUp end={10} suffix="+" /> years building software, mostly React and TypeScript, plus Node. I ship production-grade code with strong observability, and I work with AI coding agents. Independent contractor, remote since 2020.
+        <div className="b-grid">
+          <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="b-card">
+            <h2 className="b-title">Software</h2>
+            <p className="b-text">
+              <CountUp end={10} suffix="+" /> years building software, mostly React and TypeScript, plus Node. I ship production-grade code with strong observability, and I work with AI coding agents. Independent contractor, remote since 2020.
+            </p>
+            <ul className="b-tags" aria-label="Main stack">
+              <li>React</li>
+              <li>TypeScript</li>
+              <li>Next.js</li>
+              <li>Node.js</li>
+              <li>Datadog</li>
+            </ul>
+            <div className="b-worked">
+              <span className="b-meta">Worked with</span>
+              <p className="b-text">
+                <span className="b-nw">PwC</span><span className="sr-only">,</span>
+                <span className="b-dot" aria-hidden="true" /><span className="b-nw">European Patent Office</span><span className="sr-only">,</span>
+                <span className="b-dot" aria-hidden="true" /><span className="b-nw">Grubhub</span>
               </p>
-              <ul className="b-stack" aria-label="Main stack">
-                <li>React</li>
-                <li>TypeScript</li>
-                <li>Next.js</li>
-                <li>Node.js</li>
-                <li>Datadog</li>
-              </ul>
-              <div className="b-worked">
-                <p className="b-label">Worked with</p>
-                <ul className="b-clients">
-                  <li>PwC</li>
-                  <li>European Patent Office</li>
-                  <li>Grubhub</li>
-                </ul>
-              </div>
             </div>
-            <span className="b-venture-cta">
-              View LinkedIn profile
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </span>
+            <span className="b-cta">View LinkedIn profile <Arrow /></span>
           </a>
 
-          <div className="b-card b-writing">
-            <div>
-              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></div>
-              <h2 className="b-venture-title">Writing</h2>
-              <p className="b-venture-desc">
-                Learning, emotions, parenting, performance. Some practical. Some just me figuring it out.
-              </p>
-              <a
-                href="https://alexbancu.substack.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="b-substack-link"
-              >
-                Read on Substack
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </a>
-            </div>
+          <section className="b-card" aria-labelledby="writing-title">
+            <h2 id="writing-title" className="b-title">Writing</h2>
+            <p className="b-text">
+              Learning, emotions, parenting, performance. Some practical. Some just me figuring it out.
+            </p>
             {substackPost && (
-              <a
-                href={substackPost.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="b-substack-latest"
-              >
-                <p className="b-substack-label">Latest</p>
-                <p className="b-substack-title">{substackPost.title}</p>
+              <a href={substackPost.link} target="_blank" rel="noopener noreferrer" className="b-post">
+                <span className="b-meta">Latest post</span>
+                <span className="b-post-title">{substackPost.title}</span>
                 {substackPost.subtitle && (
-                  <p className="b-substack-subtitle">{substackPost.subtitle}</p>
+                  <span className="b-post-sub">{substackPost.subtitle}</span>
                 )}
               </a>
             )}
-            <div className="b-substack-subscribe">
+            <a href={SUBSTACK} target="_blank" rel="noopener noreferrer" className="b-cta">
+              Read on Substack <Arrow />
+            </a>
+            <div className="b-subscribe">
               <SubstackSubscribe />
             </div>
-          </div>
+          </section>
 
-          <Link href="/coaching" className="b-card b-venture b-coaching-row b-full">
-            <div>
-              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
-              <h2 className="b-venture-title">Coaching</h2>
-              <p className="b-venture-desc">
-                I sometimes coach people. Here&apos;s what they said.
-              </p>
-            </div>
-            <span className="b-venture-cta">
-              Read what they said
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </span>
+          <Link href="/coaching" className="b-card b-coaching">
+            <h2 className="b-title">Coaching</h2>
+            <p className="b-text">I sometimes coach people. Here&apos;s what they said.</p>
+            <span className="b-cta">Read what they said <Arrow /></span>
           </Link>
-
-      </div>
-
-      <div className="b-footer">
-        <div className="b-socials-row">
-          <a href="https://www.linkedin.com/in/bancucristianalexandru/" target="_blank" rel="noopener noreferrer" className="b-social" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-          <a href="https://alexbancu.substack.com" target="_blank" rel="noopener noreferrer" className="b-social" aria-label="Substack"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
         </div>
-        <p className="b-copyright">&copy; {new Date().getFullYear()} Alex Bancu</p>
-      </div>
+
+        <footer className="b-footer">
+          <div className="b-socials">
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="b-social" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href={SUBSTACK} target="_blank" rel="noopener noreferrer" className="b-social" aria-label="Substack"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
+          </div>
+          <p className="b-copyright">&copy; {new Date().getFullYear()} Alex Bancu</p>
+        </footer>
+      </main>
     </div>
     </>
   );
