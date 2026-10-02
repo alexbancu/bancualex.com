@@ -1,0 +1,564 @@
+/* V2 homepage preview. Everything is scoped under .v2.
+   SpectrumRoot writes --t, --mono, --casl, --slnt and --accent on .v2,
+   and --near on each door, every animation frame. */
+
+.v2 {
+  --paper: #e7ddde; /* the backdrop of the portrait, so the photo melts into the page */
+  --chalk: #f6f1f1;
+  --ink: #16182e;
+  --ink-2: #4a4458;
+  --line: rgb(22 24 46 / 0.12);
+
+  --display: "MONO" var(--mono), "CASL" var(--casl), "slnt" var(--slnt), "CRSV" 0.5;
+  --sans: "MONO" 0, "CASL" 0, "slnt" 0, "CRSV" 0.5;
+  --code: "MONO" 1, "CASL" 0, "slnt" 0, "CRSV" 0.5;
+  --casual: "MONO" 0, "CASL" 1, "slnt" -15, "CRSV" 0.5;
+
+  min-height: 100dvh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-recursive), ui-sans-serif, system-ui, sans-serif;
+  font-variation-settings: var(--sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.v2 ::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+.v2 a:focus-visible,
+.v2 button:focus-visible,
+.v2 input:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.v2-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 640px) {
+  .v2-wrap { padding: 0 28px; }
+}
+
+@media (min-width: 1024px) {
+  .v2-wrap { padding: 0 40px; }
+}
+
+/* ── Top bar ── */
+
+.v2-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 20px 0;
+  font-variation-settings: var(--code);
+  font-size: 0.78rem;
+}
+
+.v2-top a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.v2-top nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+
+.v2-top nav a {
+  color: var(--ink-2);
+  text-underline-offset: 5px;
+  text-decoration-thickness: 2px;
+}
+
+.v2-top nav a:hover {
+  color: var(--ink);
+  text-decoration-line: underline;
+  text-decoration-color: var(--accent);
+}
+
+/* ── Hero ── */
+
+.v2-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.v2-portrait {
+  position: relative;
+  justify-self: end;
+  width: min(80%, 380px);
+  aspect-ratio: 1330 / 1216;
+}
+
+.v2-portrait img {
+  object-fit: cover;
+  /* closest-side keeps the fade inside the box, so no photo edge ever shows */
+  -webkit-mask-image: radial-gradient(closest-side at 50% 46%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(closest-side at 50% 46%, #000 62%, transparent 100%);
+}
+
+.v2-hero-text {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(-7rem, -22vw, -3rem);
+}
+
+.v2-name {
+  margin: 0;
+  font-size: clamp(4.25rem, 22vw, 7.5rem);
+  font-weight: 850;
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  font-variation-settings: var(--display);
+}
+
+.v2-name span {
+  display: block;
+  white-space: nowrap;
+}
+
+.v2-bio {
+  max-width: 30ch;
+  margin: 22px 0 0;
+  font-size: clamp(1.08rem, 1.5vw, 1.3rem);
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.v2-bio em {
+  font-style: normal;
+  font-weight: 560;
+  font-variation-settings: var(--casual);
+  color: var(--ink);
+}
+
+@media (min-width: 960px) {
+  .v2-hero {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: end;
+  }
+
+  .v2-portrait {
+    grid-column: 7 / -1;
+    grid-row: 1;
+    justify-self: stretch;
+    width: auto;
+  }
+
+  .v2-hero-text {
+    grid-column: 1 / span 8;
+    grid-row: 1;
+    margin-top: 0;
+    padding-bottom: 16px;
+  }
+
+  .v2-name {
+    font-size: clamp(7rem, 13vw, 10.75rem);
+  }
+}
+
+/* ── Dial ── */
+
+.v2-dial {
+  margin-top: 44px;
+}
+
+.v2-dial-ends {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  font-weight: 650;
+}
+
+.v2-end-code {
+  font-size: 0.85rem;
+  font-variation-settings: var(--code);
+}
+
+.v2-end-people {
+  font-size: 1.05rem;
+  font-variation-settings: var(--casual);
+}
+
+.v2-track {
+  position: relative;
+  height: 6px;
+}
+
+.v2-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 99px;
+}
+
+.v2-thumb {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--t) * 100%);
+  width: 30px;
+  height: 30px;
+  translate: -50% -50%;
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+  background: var(--chalk);
+  box-shadow: 0 6px 18px -6px var(--accent);
+  pointer-events: none;
+}
+
+.v2-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* The real control: invisible, but it owns keyboard, touch and screen readers.
+   Its thumb is as wide as the visual one, and it overhangs the track by half
+   a thumb on each side, so its value maps 1:1 onto the visual track. */
+.v2-range {
+  position: absolute;
+  top: 50%;
+  left: -15px;
+  width: calc(100% + 30px);
+  height: 44px;
+  margin: 0;
+  translate: 0 -50%;
+  opacity: 0;
+  cursor: ew-resize;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+.v2-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 30px;
+  height: 44px;
+}
+
+.v2-range::-moz-range-thumb {
+  width: 30px;
+  height: 44px;
+  border: 0;
+}
+
+.v2-dial:has(.v2-range:focus-visible) .v2-thumb {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ── Doors ── */
+
+.v2-doors {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.v2-cell {
+  display: flex;
+}
+
+.v2-door {
+  position: relative;
+  flex: 1;
+  min-width: 0; /* let the subscribe input shrink instead of widening the column */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 22px 20px;
+  border: 1px solid color-mix(in oklch, var(--hue) calc(var(--near) * 65%), var(--line));
+  border-radius: 22px;
+  background: color-mix(in oklch, var(--hue) calc(var(--near) * 22%), var(--chalk));
+  box-shadow: 0 26px 50px -32px color-mix(in oklch, var(--hue) calc(var(--near) * 100%), transparent);
+  translate: 0 calc(var(--near) * -6px);
+  color: inherit;
+  text-decoration: none;
+}
+
+a.v2-door:focus-visible {
+  border-radius: 22px;
+  outline-offset: 4px;
+}
+
+.v2-door h2 {
+  margin: 4px 0 2px;
+  font-size: 1.7rem;
+  font-weight: 760;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.v2-door p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.v2-door .v2-stack {
+  font-variation-settings: var(--code);
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
+.v2-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 6px;
+  font-variation-settings: var(--code);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--hue-ink);
+  text-decoration: none;
+}
+
+.v2-cta svg {
+  transition: translate 0.25s ease;
+}
+
+a.v2-door:hover .v2-cta svg,
+a.v2-cta:hover svg {
+  translate: 4px 0;
+}
+
+/* Writing is not one link: it holds a link, the latest post and a form. */
+.v2-door-writing .v2-cta {
+  align-self: flex-start;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.v2-latest {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 0.5);
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.v2-latest:hover {
+  background: rgb(255 255 255 / 0.85);
+}
+
+.v2-latest small {
+  display: block;
+  font-variation-settings: var(--code);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hue-ink);
+}
+
+.v2-latest strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.98rem;
+  font-weight: 650;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.v2-latest span {
+  display: -webkit-box;
+  margin-top: 4px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+/* Restyle the shared SubstackSubscribe component (it ships Tailwind classes). */
+.v2-subscribe {
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.v2-subscribe form {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  max-width: none;
+  margin: 0;
+}
+
+.v2-subscribe input[type="email"] {
+  all: unset;
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgb(255 255 255 / 0.65);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+
+.v2-subscribe input[type="email"]::placeholder {
+  color: var(--ink-2);
+  opacity: 0.7;
+}
+
+.v2-subscribe button[type="submit"] {
+  all: unset;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: var(--chalk);
+  font-family: inherit;
+  font-variation-settings: var(--code);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.v2-subscribe button[type="submit"]:hover {
+  background: var(--hue-ink);
+}
+
+.v2-subscribe input:disabled,
+.v2-subscribe button:disabled {
+  opacity: 0.5;
+}
+
+.v2-subscribe p {
+  margin: 0;
+  font-size: 0.82rem;
+  text-align: left;
+  color: var(--ink);
+}
+
+@media (min-width: 640px) {
+  .v2-doors {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* Desktop: four columns with no grid gap (the cells pad themselves), so each
+   card's centre sits at exactly 0.125 / 0.375 / 0.625 / 0.875 of the track. */
+@media (min-width: 960px) {
+  .v2-track,
+  .v2-doors {
+    margin-right: -8px;
+    margin-left: -8px;
+  }
+
+  .v2-doors {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    margin-top: 34px;
+  }
+
+  .v2-cell {
+    padding: 0 8px;
+  }
+
+  /* A stem from the track down to each card. It lights up in the card's
+     own hue as the dial arrives, and shortens as the card lifts. */
+  .v2-door::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 2px;
+    height: calc(34px - 3px - var(--near) * 6px);
+    translate: -1px 0;
+    background: color-mix(in oklch, var(--hue) calc(var(--near) * 100%), var(--line));
+  }
+}
+
+/* ── Footer ── */
+
+.v2-foot {
+  margin-top: 72px;
+  padding: 22px 0 32px;
+  border-top: 1px solid var(--line);
+  font-variation-settings: var(--code);
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+
+/* ── Load sequence ── */
+
+@media (prefers-reduced-motion: no-preference) {
+  .v2-name span {
+    animation: v2-rise 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) both;
+  }
+
+  .v2-name span + span { animation-delay: 0.08s; }
+
+  .v2-bio {
+    animation: v2-rise 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) 0.18s both;
+  }
+
+  .v2-portrait {
+    animation: v2-settle 1.4s ease-out 0.1s both;
+  }
+
+  .v2-dial-ends {
+    animation: v2-rise 0.7s ease-out 0.35s both;
+  }
+
+  .v2-fill {
+    transform-origin: left center;
+    animation: v2-draw 1.1s cubic-bezier(0.65, 0, 0.25, 1) 0.3s both;
+  }
+
+  .v2-thumb {
+    animation: v2-pop 0.5s cubic-bezier(0.3, 1.5, 0.5, 1) 0.9s both;
+  }
+
+  .v2-cell {
+    animation: v2-rise 0.8s cubic-bezier(0.2, 0.7, 0.1, 1) both;
+  }
+
+  .v2-cell:nth-child(1) { animation-delay: 0.5s; }
+  .v2-cell:nth-child(2) { animation-delay: 0.58s; }
+  .v2-cell:nth-child(3) { animation-delay: 0.66s; }
+  .v2-cell:nth-child(4) { animation-delay: 0.74s; }
+}
+
+@keyframes v2-rise {
+  from { opacity: 0; transform: translateY(18px); }
+}
+
+@keyframes v2-settle {
+  from { opacity: 0; transform: scale(1.04); }
+}
+
+@keyframes v2-draw {
+  from { transform: scaleX(0); }
+}
+
+@keyframes v2-pop {
+  from { opacity: 0; transform: scale(0.4); }
+}
