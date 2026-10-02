@@ -60,9 +60,6 @@ export default function RootLayout({
           data-key="LpkFzXV8AJVyU0yooxmwxA"
           strategy="afterInteractive"
         />
-        <Script id="clarity" strategy="afterInteractive">
-          {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "v955s1ha9s");`}
-        </Script>
       </head>
       <body className={`${inter.variable} ${lora.variable} antialiased`}>
         {children}

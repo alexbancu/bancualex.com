@@ -74,28 +74,18 @@ export default async function HubPage() {
           max-width: 720px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: 1fr;
+          grid-template-columns: minmax(0, 1fr);
           grid-auto-rows: auto;
           gap: 0.75rem;
         }
 
+        /* minmax(0, …) keeps the 55/45 split even when a card's content
+           (like the email input) has a wide intrinsic size. */
         @media (min-width: 640px) {
           .bento-grid {
-            grid-template-columns: 55fr 45fr;
+            grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
             gap: 1rem;
           }
-        }
-
-        .b-left-col,
-        .b-right-col {
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-        }
-
-        @media (min-width: 640px) {
-          .b-left-col,
-          .b-right-col { gap: 1rem; }
         }
 
         /* ── Shared card base ── */
@@ -131,7 +121,7 @@ export default async function HubPage() {
         .b-2col { grid-column: span 2; }
 
         @media (max-width: 639px) {
-          .bento-grid { grid-template-columns: 1fr; }
+          .bento-grid { grid-template-columns: minmax(0, 1fr); }
           .b-2col { grid-column: 1 / -1; }
           .b-full { grid-column: 1 / -1; }
           .b-mobile-full { grid-column: 1 / -1; }
@@ -175,10 +165,32 @@ export default async function HubPage() {
         }
 
         .b-bio {
-          font-size: 0.88rem;
+          font-size: 0.95rem;
           line-height: 1.55;
           color: var(--sub);
           margin: 0;
+        }
+
+        .b-email {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem;
+          min-height: 36px;
+          margin-top: 0.75rem;
+          padding: 0 0.85rem;
+          border-radius: 999px;
+          border: 1px solid var(--accent-border);
+          background: var(--accent-soft);
+          color: var(--accent);
+          font-size: 0.82rem;
+          font-weight: 500;
+          text-decoration: none;
+          transition: background 0.2s, border-color 0.2s;
+        }
+
+        .b-email:hover {
+          background: rgba(26, 92, 46, 0.12);
+          border-color: var(--accent-hover);
         }
 
         /* ── 2. Venture cards ── */
@@ -225,7 +237,9 @@ export default async function HubPage() {
           display: inline-flex;
           align-items: center;
           gap: 0.35rem;
-          margin-top: 0.4rem;
+          /* sits at the card's bottom edge, with room above it */
+          margin-top: auto;
+          padding-top: 0.9rem;
         }
 
         .b-venture-cta svg {
@@ -235,6 +249,97 @@ export default async function HubPage() {
         a.b-card:hover .b-venture-cta svg {
           transform: translateX(3px);
         }
+
+        /* ── Software card: stack tags + "Worked with" ── */
+        .b-stack {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.35rem;
+          margin: 0.2rem 0 0;
+          padding: 0;
+          list-style: none;
+        }
+
+        .b-stack li {
+          padding: 0.2rem 0.55rem;
+          border-radius: 999px;
+          border: 1px solid var(--accent-border);
+          background: var(--accent-soft);
+          color: var(--sub);
+          font-size: 0.7rem;
+          font-weight: 500;
+          line-height: 1.4;
+        }
+
+        .b-worked {
+          margin-top: 0.9rem;
+          padding-top: 0.75rem;
+          border-top: 1px solid var(--accent-border);
+        }
+
+        .b-label {
+          font-size: 0.6rem;
+          font-weight: 600;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: var(--mute);
+          margin: 0 0 0.35rem;
+        }
+
+        .b-clients {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          row-gap: 0.15rem;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          font-family: var(--font-h);
+          font-size: 0.92rem;
+          line-height: 1.4;
+          color: var(--text);
+        }
+
+        /* Separator dot drawn as a shape, so screen readers have nothing to announce */
+        .b-clients li + li::before {
+          content: "";
+          display: inline-block;
+          width: 3px;
+          height: 3px;
+          margin: 0 0.55rem;
+          border-radius: 50%;
+          background: var(--mute);
+          vertical-align: middle;
+        }
+
+        /* Coaching: one slim full-width row under Software and Writing */
+        @media (min-width: 640px) {
+          .b-venture.b-coaching-row {
+            flex-direction: row;
+            align-items: center;
+            gap: 1.25rem;
+          }
+
+          .b-coaching-row > div { flex: 1; }
+
+          .b-coaching-row .b-venture-desc { margin-bottom: 0; }
+
+          .b-coaching-row .b-venture-cta {
+            margin-top: 0;
+            padding-top: 0;
+            white-space: nowrap;
+          }
+        }
+
+        /* ── Keyboard focus ── */
+        .bento a:focus-visible,
+        .bento button:focus-visible,
+        .bento input:focus-visible {
+          outline: 2px solid var(--accent);
+          outline-offset: 3px;
+        }
+
+        .bento a.b-card:focus-visible { outline-offset: 4px; }
 
         /* ── Latest Substack post inside Writing card ── */
         .b-substack-latest {
@@ -319,8 +424,11 @@ export default async function HubPage() {
         }
 
         /* Override Tailwind styles from SubstackSubscribe inside hub */
+        /* Wraps when the card is narrow (tablet): the button drops below
+           and fills the row instead of squeezing the email field. */
         .b-substack-subscribe form {
           display: flex;
+          flex-wrap: wrap;
           gap: 0.4rem;
           align-items: center;
           max-width: none;
@@ -330,15 +438,19 @@ export default async function HubPage() {
         .b-substack-subscribe input[type="email"] {
           all: unset;
           box-sizing: border-box;
-          flex: 1;
-          height: 34px;
+          /* grows ~1000x faster than the button, so on one row the button stays
+             content-width; once wrapped, the button grows to fill its row */
+          flex: 999 1 165px;
+          min-width: 0;
+          height: 40px;
           padding: 0 0.75rem;
           border-radius: 8px;
           border: 1px solid var(--accent-border);
           background: var(--bg);
           color: var(--text);
           font-family: var(--font-b);
-          font-size: 0.75rem;
+          /* 16px or more, or iOS Safari zooms the page when the field is tapped */
+          font-size: 16px;
           transition: border-color 0.2s;
         }
 
@@ -353,13 +465,14 @@ export default async function HubPage() {
         .b-substack-subscribe button[type="submit"] {
           all: unset;
           box-sizing: border-box;
-          height: 34px;
+          flex: 1 0 auto;
+          height: 40px;
           padding: 0 1rem;
           border-radius: 8px;
           background: var(--accent);
           color: #f0f5f1;
           font-family: var(--font-b);
-          font-size: 0.72rem;
+          font-size: 0.78rem;
           font-weight: 600;
           cursor: pointer;
           transition: background 0.2s;
@@ -421,22 +534,28 @@ export default async function HubPage() {
 
         .b-socials-row {
           display: flex;
-          gap: 1.25rem;
+          gap: 0.5rem;
           justify-content: center;
           flex-wrap: wrap;
-          margin-bottom: 1rem;
+          margin-bottom: 0.75rem;
         }
 
+        /* 40px boxes so each icon is an easy tap target */
         .b-social {
-          font-size: 0.78rem;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
           color: var(--mute);
           text-decoration: none;
-          transition: color 0.2s;
-          letter-spacing: 0.01em;
+          transition: color 0.2s, background 0.2s;
         }
 
         .b-social:hover {
           color: var(--accent);
+          background: var(--accent-soft);
         }
 
         .b-social svg {
@@ -458,9 +577,11 @@ export default async function HubPage() {
         }
 
         /* ── Animations ── */
+        /* Animates "translate", not "transform": a forwards-filled transform
+           would override the cards' hover lift for the life of the page. */
         @keyframes brise {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; translate: 0 10px; }
+          to { opacity: 1; translate: 0 0; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -485,13 +606,16 @@ export default async function HubPage() {
           <div className="b-id-text">
             <h1 className="b-name">Alex Bancu</h1>
             <p className="b-bio">
-              Software engineer. Dad. Building AI tools. Figuring things out in public.
+              Senior software engineer in Cluj, Romania. React, TypeScript, Node. Dad.
             </p>
+            <a href="mailto:alex@bancualex.com" className="b-email">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              alex@bancualex.com
+            </a>
           </div>
         </div>
 
-        {/* Left column: Software + Coaching */}
-        <div className="b-left-col">
+        {/* Row 2: Software (55%) and Writing (45%). Row 3: Coaching, full width. */}
           <a
             href="https://www.linkedin.com/in/bancucristianalexandru/"
             target="_blank"
@@ -504,33 +628,28 @@ export default async function HubPage() {
               <p className="b-venture-desc">
                 <CountUp end={10} suffix="+" /> years building software, mostly React and TypeScript, plus Node. I ship production-grade code with strong observability, and I work with AI coding agents. Independent contractor, remote since 2020.
               </p>
-              <p className="b-venture-desc" style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
-                React · TypeScript · Next.js · Node.js · Datadog
-              </p>
+              <ul className="b-stack" aria-label="Main stack">
+                <li>React</li>
+                <li>TypeScript</li>
+                <li>Next.js</li>
+                <li>Node.js</li>
+                <li>Datadog</li>
+              </ul>
+              <div className="b-worked">
+                <p className="b-label">Worked with</p>
+                <ul className="b-clients">
+                  <li>PwC</li>
+                  <li>European Patent Office</li>
+                  <li>Grubhub</li>
+                </ul>
+              </div>
             </div>
             <span className="b-venture-cta">
-              LinkedIn
+              View LinkedIn profile
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </span>
           </a>
 
-          <Link href="/coaching" className="b-card b-venture">
-            <div>
-              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
-              <h2 className="b-venture-title">Coaching</h2>
-              <p className="b-venture-desc">
-                I sometimes coach people. Here&apos;s what they said.
-              </p>
-            </div>
-            <span className="b-venture-cta">
-              Read more
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </span>
-          </Link>
-        </div>
-
-        {/* Right column: Writing */}
-        <div className="b-right-col">
           <div className="b-card b-writing">
             <div>
               <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></div>
@@ -566,7 +685,20 @@ export default async function HubPage() {
               <SubstackSubscribe />
             </div>
           </div>
-        </div>
+
+          <Link href="/coaching" className="b-card b-venture b-coaching-row b-full">
+            <div>
+              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+              <h2 className="b-venture-title">Coaching</h2>
+              <p className="b-venture-desc">
+                I sometimes coach people. Here&apos;s what they said.
+              </p>
+            </div>
+            <span className="b-venture-cta">
+              Read what they said
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </span>
+          </Link>
 
       </div>
 
