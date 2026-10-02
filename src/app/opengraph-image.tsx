@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Alex Bancu — Software Engineer & Coach";
+export const alt = "Alex Bancu | Senior Software Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -40,7 +40,7 @@ export default function OgImage() {
             lineHeight: 1.6,
           }}
         >
-          Software engineer figuring things out in public.
+          Senior software engineer. React, TypeScript and Node.
         </div>
       </div>
     ),

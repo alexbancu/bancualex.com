@@ -12,9 +12,9 @@ export default async function HubPage() {
     "@type": "Person",
     name: "Alex Bancu",
     url: "https://bancualex.com",
-    jobTitle: "Software Engineer & Coach",
+    jobTitle: "Senior Software Engineer",
     description:
-      "Software engineer figuring things out in public. Writing about overthinking, decisions, and getting unstuck.",
+      "Senior software engineer. 10+ years building software, mostly React and TypeScript, plus Node. I work with AI coding agents and write on Substack.",
     sameAs: [
       "https://x.com/AlxBancu",
       "https://www.linkedin.com/in/bancucristianalexandru/",

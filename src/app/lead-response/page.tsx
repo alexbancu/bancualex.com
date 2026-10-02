@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/lead-response",
   },
+  // Retired offer experiment: reachable by link, kept out of search.
+  robots: { index: false, follow: false },
   openGraph: {
     url: "/lead-response",
     title: "Stop losing leads to whoever replies first.",

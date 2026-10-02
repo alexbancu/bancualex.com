@@ -30,24 +30,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
-    {
-      url: "https://bancualex.com/lead-response",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bancualex.com/clinici-stomatologice",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.95,
-    },
-    {
-      url: "https://bancualex.com/ai-audit",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.95,
-    },
+    // Retired offer pages (/lead-response, /clinici-stomatologice, /ai-audit)
+    // stay live by link but are noindex and left out of the sitemap.
     ...blogEntries,
   ];
 }

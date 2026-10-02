@@ -19,27 +19,27 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Alex Bancu — Software Engineer & Coach",
+  title: "Alex Bancu | Senior Software Engineer",
   description:
-    "Software engineer figuring things out in public. Writing about overthinking, decisions, and getting unstuck.",
+    "Senior software engineer. 10+ years building software, mostly React and TypeScript, plus Node. I work with AI coding agents and write on Substack.",
   metadataBase: new URL("https://bancualex.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     url: "/",
-    title: "Alex Bancu — Software Engineer & Coach",
+    title: "Alex Bancu | Senior Software Engineer",
     description:
-      "Software engineer figuring things out in public. Writing about overthinking, decisions, and getting unstuck.",
+      "Senior software engineer. 10+ years building software, mostly React and TypeScript, plus Node. I work with AI coding agents and write on Substack.",
     siteName: "Alex Bancu",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alex Bancu — Software Engineer & Coach",
+    title: "Alex Bancu | Senior Software Engineer",
     description:
-      "Software engineer figuring things out in public. Writing about overthinking, decisions, and getting unstuck.",
+      "Senior software engineer. 10+ years building software, mostly React and TypeScript, plus Node. I work with AI coding agents and write on Substack.",
   },
   robots: {
     index: true,

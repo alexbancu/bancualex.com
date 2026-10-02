@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/ai-audit",
   },
+  // Retired offer experiment: reachable by link, kept out of search.
+  robots: { index: false, follow: false },
   openGraph: {
     url: "/ai-audit",
     title: "Right now, your business runs you.",

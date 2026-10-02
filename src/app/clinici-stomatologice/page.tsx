@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/clinici-stomatologice",
   },
+  // Retired offer experiment: reachable by link, kept out of search.
+  robots: { index: false, follow: false },
   openGraph: {
     url: "/clinici-stomatologice",
     title: "Nu mai pierdeți pacienți internaționali din cauza răspunsului întârziat.",
