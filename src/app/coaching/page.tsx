@@ -44,7 +44,7 @@ const testimonials = [
   },
   {
     quote:
-      "I sleep better, I think better and I feel better – Alex’s calm & focused guidance over a couple sessions helped bring to light more about my long standing struggle with sleep than I managed to eek out over years of (insufficient) introspection. His warm, balanced tone often echoes in my head when I’m faced with (what at least feels like) difficult decisions – and I feel very grateful for it.",
+      "I sleep better, I think better and I feel better - Alex’s calm & focused guidance over a couple sessions helped bring to light more about my long standing struggle with sleep than I managed to eek out over years of (insufficient) introspection. His warm, balanced tone often echoes in my head when I’m faced with (what at least feels like) difficult decisions - and I feel very grateful for it.",
     name: "Codrin Gidei",
     role: "Chief Technology Officer, Block Scholes",
     date: "January 2025",
