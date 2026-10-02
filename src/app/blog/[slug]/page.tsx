@@ -110,7 +110,7 @@ export default async function BlogPostPage({ params }: Props) {
 
               <div className="flex items-center gap-3 mb-8">
                 <Image
-                  src="/images/eu.jpg"
+                  src="/images/alex-2026.jpg"
                   alt="Alex Bancu"
                   width={32}
                   height={32}

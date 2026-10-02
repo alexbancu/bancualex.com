@@ -55,7 +55,7 @@ export default function CoachingPage() {
 
       <div className="flex flex-col items-center text-center mb-12">
         <Image
-          src="/images/eu.jpg"
+          src="/images/alex-2026.jpg"
           alt="Alex Bancu"
           width={56}
           height={56}
