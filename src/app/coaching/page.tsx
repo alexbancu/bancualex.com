@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Coaching | Alex Bancu",
   description:
-    "I coach people sometimes. Conversations with engineers, founders, and friends who felt stuck. Some of them say it changed something.",
+    "I coach engineers, founders, and friends who feel stuck. Online, in English or Romanian. The first conversation is free.",
   alternates: {
     canonical: "/coaching",
   },
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: "/coaching",
     title: "Coaching | Alex Bancu",
     description:
-      "I coach people sometimes. Conversations with engineers, founders, and friends who felt stuck. Some of them say it changed something.",
+      "I coach engineers, founders, and friends who feel stuck. Online, in English or Romanian. The first conversation is free.",
     type: "website",
   },
 };
@@ -28,7 +28,7 @@ const EMAIL = "alex@bancualex.com";
 const testimonials = [
   {
     quote:
-      "I purchased 4 coaching sessions with Alex, and the results were great. When we started, I was at a point in life where I was feeling stuck. My business was stagnating in the previous 6 months, and I just couldn’t find the energy or motivation to start working again. Talking to Alex made me aware of the main negative thinking patterns holding me back. He was also a great listener, and made me feel understood and encouraged.",
+      "When we started, I was at a point in life where I was feeling stuck. My business was stagnating in the previous 6 months, and I just couldn’t find the energy or motivation to start working again. Talking to Alex made me aware of the main negative thinking patterns holding me back. He was also a great listener, and made me feel understood and encouraged.",
     name: "Timotei Centea",
     role: "Business Owner, Stelaria",
     date: "December 2024",
@@ -374,8 +374,9 @@ export default function CoachingPage() {
           <div>
             <h1 className="c-h1">I coach people sometimes.</h1>
             <p className="c-lede">
-              I&apos;ve had conversations with engineers, founders, and friends
-              who felt stuck. Some of them say it changed something.
+              I&apos;ve coached engineers, founders, and friends who felt
+              stuck. Usually it was work they kept putting off, a business
+              that stopped moving, or a goal without a plan.
             </p>
           </div>
         </header>
@@ -419,9 +420,13 @@ export default function CoachingPage() {
             </p>
             <p className="c-text">
               I trained with Bestcor in 2024 and hold a state-recognised
-              coaching qualification in Romania. In 2026 I finished Joe
-              Hudson&apos;s Connection Course. I&apos;ve coached more than 20
-              people since 2024.
+              coaching qualification in Romania. In 2025 I did Positive
+              Intelligence&apos;s PQ Coach training. In 2026 I finished Joe
+              Hudson&apos;s Connection Course.
+            </p>
+            <p className="c-text">
+              I&apos;ve coached more than 20 people since 2024. Mostly I listen
+              and ask questions.
             </p>
           </section>
 
@@ -444,17 +449,19 @@ export default function CoachingPage() {
           <section className="c-card c-wide" aria-labelledby="how-title">
             <h2 id="how-title" className="c-title">How it works</h2>
             <p className="c-text">
+              The first conversation is free. You don&apos;t need to prepare
+              anything. You tell me what&apos;s going on, I ask questions, and
+              at the end we decide together whether to continue.
+            </p>
+            <p className="c-text">
               Sessions are about 60 minutes, online, in English or Romanian.
-              We shape the length and how often we meet around what you need.
+              How often we meet depends on what you need. If we continue,
+              it&apos;s paid, and we agree on the price and the number of
+              sessions before we start.
             </p>
             <p className="c-text">
-              The first conversation is free. We talk about what&apos;s going
-              on and whether coaching fits. If we continue, it&apos;s paid, and
-              we agree on the price before we start.
-            </p>
-            <p className="c-text">
-              If you&apos;d like to talk, send me a few lines about what&apos;s
-              going on.
+              To start, send me a few lines. What&apos;s going on, and what
+              have you tried so far?
             </p>
             <a href={`mailto:${EMAIL}`} className="c-btn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
