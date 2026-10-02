@@ -35,8 +35,13 @@ export function variationAt(t: number): string {
   return `"MONO" ${mono.toFixed(3)}, "CASL" ${casl.toFixed(3)}, "slnt" ${slnt.toFixed(2)}, "CRSV" 0.5`;
 }
 
+// Doors sit at the centre of equal desktop columns, so the dial thumb
+// lands exactly above a card. Change the count when a door is added or removed.
+export const DOOR_COUNT = 3;
+export const doorAt = (index: number) => (index + 0.5) / DOOR_COUNT;
+
 // 1 when the dial sits on a door, 0 once it is a full door-width away.
-export const nearness = (t: number, p: number) => clamp01(1 - Math.abs(t - p) * 4);
+export const nearness = (t: number, p: number) => clamp01(1 - Math.abs(t - p) * DOOR_COUNT);
 
 export function trackGradient(): string {
   const stops = Array.from({ length: 9 }, (_, i) => colorAt(i / 8));

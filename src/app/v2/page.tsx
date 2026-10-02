@@ -7,7 +7,7 @@ import { getLatestSubstackPost } from "@/lib/substack";
 import SubstackSubscribe from "@/components/SubstackSubscribe";
 import CountUp from "@/components/CountUp";
 import SpectrumRoot from "./SpectrumRoot";
-import { colorAt, inkAt, nearness, trackGradient, variationAt } from "./spectrum";
+import { colorAt, doorAt, inkAt, nearness, trackGradient, variationAt } from "./spectrum";
 import "./v2.css";
 
 // One variable family with two temperaments: Mono Linear for code, Sans Casual for people.
@@ -26,9 +26,8 @@ export const metadata: Metadata = {
 const LINKEDIN = "https://www.linkedin.com/in/bancucristianalexandru/";
 const SUBSTACK = "https://alexbancu.substack.com";
 
-// Door positions on the code -> people dial. They sit at the centre of each
-// of the four desktop columns, so the dial thumb lands exactly above a card.
-const P = { software: 0.125, ai: 0.375, coaching: 0.625, writing: 0.875 };
+// Door positions on the code -> people dial, left to right.
+const P = { software: doorAt(0), coaching: doorAt(1), writing: doorAt(2) };
 
 function door(p: number) {
   return {
@@ -125,26 +124,6 @@ export default async function HomeV2() {
                 Independent contractor. Remote since 2020.
               </p>
               <p className="v2-stack">React · TypeScript · Next.js · Node.js · Datadog</p>
-              <span className="v2-cta">See my LinkedIn <Arrow /></span>
-            </a>
-          </div>
-
-          <div className="v2-cell">
-            <a
-              href={LINKEDIN}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="v2-door"
-              data-p={P.ai}
-              data-name="AI & Documents"
-              style={door(P.ai)}
-            >
-              <h2 style={title(P.ai)}>AI &amp; Documents</h2>
-              <p>
-                Building tools that help teams search and understand large document
-                collections. Tax, legal, compliance.
-              </p>
-              <p>Currently prototyping on Romanian fiscal documentation.</p>
               <span className="v2-cta">See my LinkedIn <Arrow /></span>
             </a>
           </div>
