@@ -120,8 +120,9 @@ export default async function HomeV2() {
             >
               <h2 style={title(P.software)}>Software</h2>
               <p>
-                <CountUp end={9} suffix="+" /> years shipping React &amp; TypeScript at scale.
-                Independent contractor. Remote since 2020.
+                <CountUp end={10} suffix="+" /> years building software, mostly React and
+                TypeScript, plus Node. I ship production-grade code with strong observability,
+                and I work with AI coding agents. Independent contractor, remote since 2020.
               </p>
               <p className="v2-stack">React · TypeScript · Next.js · Node.js · Datadog</p>
               <span className="v2-cta">See my LinkedIn <Arrow /></span>
