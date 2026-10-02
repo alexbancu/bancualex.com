@@ -490,30 +490,8 @@ export default async function HubPage() {
           </div>
         </div>
 
-        {/* Left column: AI & Documents + Software */}
+        {/* Left column: Software + Coaching */}
         <div className="b-left-col">
-          <a
-            href="https://www.linkedin.com/in/bancucristianalexandru/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="b-card b-venture"
-          >
-            <div>
-              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><polyline points="14 2 14 8 20 8"/><circle cx="11" cy="15" r="3"/><path d="m21 21-1.9-1.9"/></svg></div>
-              <h2 className="b-venture-title">AI & Documents</h2>
-              <p className="b-venture-desc">
-                Building tools that help teams search and understand large document collections. Tax, legal, compliance.
-              </p>
-              <p className="b-venture-desc">
-                Currently prototyping on Romanian fiscal documentation.
-              </p>
-            </div>
-            <span className="b-venture-cta">
-              See my LinkedIn
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </span>
-          </a>
-
           <a
             href="https://www.linkedin.com/in/bancucristianalexandru/"
             target="_blank"
@@ -524,7 +502,7 @@ export default async function HubPage() {
               <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
               <h2 className="b-venture-title">Software</h2>
               <p className="b-venture-desc">
-                <CountUp end={9} suffix="+" /> years shipping React &amp; TypeScript at scale. Independent contractor. Remote since 2020.
+                <CountUp end={10} suffix="+" /> years building software, mostly React and TypeScript, plus Node. I ship production-grade code with strong observability, and I work with AI coding agents. Independent contractor, remote since 2020.
               </p>
               <p className="b-venture-desc" style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
                 React · TypeScript · Next.js · Node.js · Datadog
@@ -535,9 +513,23 @@ export default async function HubPage() {
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </span>
           </a>
+
+          <Link href="/coaching" className="b-card b-venture">
+            <div>
+              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+              <h2 className="b-venture-title">Coaching</h2>
+              <p className="b-venture-desc">
+                I sometimes coach people. Here&apos;s what they said.
+              </p>
+            </div>
+            <span className="b-venture-cta">
+              Read more
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </span>
+          </Link>
         </div>
 
-        {/* Right column: Writing + Coaching */}
+        {/* Right column: Writing */}
         <div className="b-right-col">
           <div className="b-card b-writing">
             <div>
@@ -574,20 +566,6 @@ export default async function HubPage() {
               <SubstackSubscribe />
             </div>
           </div>
-
-          <Link href="/coaching" className="b-card b-venture">
-            <div>
-              <div className="b-venture-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
-              <h2 className="b-venture-title">Coaching</h2>
-              <p className="b-venture-desc">
-                I sometimes coach people. Here&apos;s what they said.
-              </p>
-            </div>
-            <span className="b-venture-cta">
-              Read more
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </span>
-          </Link>
         </div>
 
       </div>
