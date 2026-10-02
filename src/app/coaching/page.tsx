@@ -29,6 +29,7 @@ const testimonials = [
   {
     quote:
       "When we started, I was at a point in life where I was feeling stuck. My business was stagnating in the previous 6 months, and I just couldn’t find the energy or motivation to start working again. Talking to Alex made me aware of the main negative thinking patterns holding me back. He was also a great listener, and made me feel understood and encouraged.",
+    key: "Talking to Alex made me aware of the main negative thinking patterns holding me back.",
     name: "Timotei Centea",
     role: "Business Owner, Stelaria",
     date: "December 2024",
@@ -37,6 +38,7 @@ const testimonials = [
   {
     quote:
       "I talked about my struggle with procrastination and breaking down big tasks at work, which often left me stuck. Alex listened intently and provided practical strategies that made the issues feel manageable. His advice stayed with me beyond the session, acting as a mental pep talk during the workday. It helped me push through tasks and maintain productivity instead of postponing them.",
+    key: "Alex listened intently and provided practical strategies that made the issues feel manageable.",
     name: "Sebastian Palaghita",
     role: "Salesforce Software Engineer",
     date: "December 2024",
@@ -45,12 +47,27 @@ const testimonials = [
   {
     quote:
       "I sleep better, I think better and I feel better - Alex’s calm & focused guidance over a couple sessions helped bring to light more about my long standing struggle with sleep than I managed to eek out over years of (insufficient) introspection. His warm, balanced tone often echoes in my head when I’m faced with (what at least feels like) difficult decisions - and I feel very grateful for it.",
+    key: "I sleep better, I think better and I feel better",
     name: "Codrin Gidei",
     role: "Chief Technology Officer, Block Scholes",
     date: "January 2025",
     terms: "Free sessions",
   },
 ];
+
+// Splits a quote around its key part so that part can be emphasised.
+// The text itself is never changed.
+function Quote({ text, mark }: { text: string; mark: string }) {
+  const i = text.indexOf(mark);
+  if (i < 0) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, i)}
+      <strong className="c-mark">{mark}</strong>
+      {text.slice(i + mark.length)}
+    </>
+  );
+}
 
 function Arrow() {
   return (
@@ -79,9 +96,10 @@ export default function CoachingPage() {
           --font-h: var(--font-lora), Georgia, serif;
           --font-b: var(--font-inter), -apple-system, sans-serif;
 
-          /* Type scale: 12 / 15 / 18 / 34. Weights: 400 and 600. */
-          --fs-meta: 0.75rem;
-          --fs-body: 0.9375rem;
+          /* Reading page: body is larger than the homepage hub (16px on phones,
+             17px from 640px up), meta 13px. Weights: 400 and 600. */
+          --fs-meta: 0.8125rem;
+          --fs-body: 1rem;
           --fs-title: 1.125rem;
           --fs-name: 2.125rem;
 
@@ -91,6 +109,10 @@ export default function CoachingPage() {
           color: var(--text);
           font-family: var(--font-b);
           -webkit-font-smoothing: antialiased;
+        }
+
+        @media (min-width: 640px) {
+          .bento { --fs-body: 1.0625rem; }
         }
 
         .c-page {
@@ -147,6 +169,39 @@ export default function CoachingPage() {
           color: var(--sub);
         }
 
+        .c-facts-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+          margin: 16px 0 0;
+          padding: 0;
+          list-style: none;
+        }
+
+        .c-facts-row li {
+          padding: 5px 12px;
+          border-radius: 999px;
+          background: var(--card);
+          box-shadow: var(--shadow);
+          color: var(--text);
+          font-size: var(--fs-meta);
+          font-weight: 600;
+        }
+
+        .c-jump {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 14px;
+          color: var(--accent);
+          font-size: var(--fs-meta);
+          font-weight: 600;
+          text-decoration: none;
+        }
+
+        .c-jump svg { transform: rotate(90deg); }
+        .c-jump:hover { text-decoration: underline; }
+
         /* ── Cards: white on grey, separated by shadow, no borders ── */
         .c-stack {
           display: flex;
@@ -175,7 +230,12 @@ export default function CoachingPage() {
         .c-quote {
           margin: 0;
           font-size: var(--fs-body);
-          line-height: 1.7;
+          line-height: 1.65;
+          color: var(--sub);
+        }
+
+        .c-mark {
+          font-weight: 600;
           color: var(--text);
         }
 
@@ -208,6 +268,7 @@ export default function CoachingPage() {
         }
 
         .c-note {
+          max-width: 560px;
           margin: 4px 4px 0;
           font-size: var(--fs-meta);
           line-height: 1.6;
@@ -232,14 +293,6 @@ export default function CoachingPage() {
           margin-top: 40px;
         }
 
-        @media (min-width: 640px) {
-          .c-facts {
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-            gap: 20px;
-          }
-
-          .c-wide { grid-column: 1 / -1; }
-        }
 
         .c-title {
           margin: 0;
@@ -255,6 +308,48 @@ export default function CoachingPage() {
           line-height: 1.6;
           color: var(--sub);
         }
+
+        .c-steps {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          counter-reset: step;
+        }
+
+        .c-steps li {
+          position: relative;
+          padding-left: 36px;
+          font-size: var(--fs-body);
+          line-height: 1.6;
+          color: var(--sub);
+          counter-increment: step;
+        }
+
+        .c-steps li::before {
+          content: counter(step);
+          position: absolute;
+          left: 0;
+          top: 1px;
+          display: grid;
+          place-items: center;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background: var(--tint);
+          color: var(--accent);
+          font-size: var(--fs-meta);
+          font-weight: 600;
+        }
+
+        .c-lead {
+          font-weight: 600;
+          color: var(--text);
+        }
+
+        #how-title { scroll-margin-top: 24px; }
 
         .c-btn {
           display: inline-flex;
@@ -335,6 +430,10 @@ export default function CoachingPage() {
           }
 
           .c-h1 { font-size: 1.75rem; }
+
+          .c-card { padding: 20px; }
+
+          .c-facts-row { justify-content: center; }
         }
 
         /* ── Load sequence. Animates "translate", not "transform". ── */
@@ -378,6 +477,14 @@ export default function CoachingPage() {
               stuck. Usually it was work they kept putting off, a business
               that stopped moving, or a goal without a plan.
             </p>
+            <ul className="c-facts-row" aria-label="At a glance">
+              <li>First conversation free</li>
+              <li>About 60 min, online</li>
+              <li>English or Romanian</li>
+            </ul>
+            <a href="#how-title" className="c-jump">
+              How it works <Arrow />
+            </a>
           </div>
         </header>
 
@@ -387,7 +494,7 @@ export default function CoachingPage() {
             {testimonials.map((t) => (
               <figure key={t.name} className="c-card">
                 <blockquote className="c-quote">
-                  &ldquo;{t.quote}&rdquo;
+                  &ldquo;<Quote text={t.quote} mark={t.key} />&rdquo;
                 </blockquote>
                 <figcaption className="c-who">
                   <span className="c-name">{t.name}</span>
@@ -416,7 +523,8 @@ export default function CoachingPage() {
           <section className="c-card" aria-labelledby="about-title">
             <h2 id="about-title" className="c-title">About me</h2>
             <p className="c-text">
-              Coaching is my side work. My day job is software engineering.
+              Coaching is my side work. My day job is software engineering,
+              in Cluj, Romania.
             </p>
             <p className="c-text">
               I trained with Bestcor in 2024 and hold a state-recognised
@@ -431,37 +539,42 @@ export default function CoachingPage() {
           </section>
 
           <section className="c-card" aria-labelledby="know-title">
-            <h2 id="know-title" className="c-title">Good to know</h2>
+            <h2 id="know-title" className="c-title">Before you write</h2>
             <p className="c-text">
-              This is coaching, not therapy. If what you bring needs a
-              therapist or a doctor, I&apos;ll tell you.
+              <span className="c-lead">Not therapy.</span> If what you bring
+              needs a therapist or a doctor, I&apos;ll tell you.
             </p>
             <p className="c-text">
-              What you tell me stays between us, unless someone&apos;s safety
-              is at risk.
+              <span className="c-lead">Private.</span> What you tell me stays
+              between us, unless someone&apos;s safety is at risk.
             </p>
             <p className="c-text">
-              If we&apos;re friends, we talk first about how coaching could
-              affect that.
+              <span className="c-lead">Friends.</span> If we know each other,
+              we talk first about how coaching could affect that.
             </p>
           </section>
 
-          <section className="c-card c-wide" aria-labelledby="how-title">
+          <section className="c-card" aria-labelledby="how-title">
             <h2 id="how-title" className="c-title">How it works</h2>
-            <p className="c-text">
-              The first conversation is free. You don&apos;t need to prepare
-              anything. You tell me what&apos;s going on, I ask questions, and
-              at the end we decide together whether to continue.
-            </p>
+            <ol className="c-steps">
+              <li>
+                <span className="c-lead">Send me a few lines.</span>{" "}
+                What&apos;s going on, and what have you tried so far?
+              </li>
+              <li>
+                <span className="c-lead">We talk once, free.</span> You
+                don&apos;t need to prepare anything. You tell me what&apos;s
+                going on, and I ask questions.
+              </li>
+              <li>
+                <span className="c-lead">We decide together.</span> If we
+                continue, it&apos;s paid, and we agree on the price and the
+                number of sessions before we start.
+              </li>
+            </ol>
             <p className="c-text">
               Sessions are about 60 minutes, online, in English or Romanian.
-              How often we meet depends on what you need. If we continue,
-              it&apos;s paid, and we agree on the price and the number of
-              sessions before we start.
-            </p>
-            <p className="c-text">
-              To start, send me a few lines. What&apos;s going on, and what
-              have you tried so far?
+              How often we meet depends on what you need.
             </p>
             <a href={`mailto:${EMAIL}`} className="c-btn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
